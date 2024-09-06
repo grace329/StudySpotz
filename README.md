@@ -1,5 +1,15 @@
 # Team101-5
 
+## members
+- Keta Khatri (k3khatri@uwaterloo.ca)
+- Abirami Karthikeyan (a8karthi@uwaterloo.ca)
+- Yzabelle Perez (yperez@uwaterloo.ca)
+- Grace Xu (g55xu@uwaterloo.ca)
+
+## Team Contract
+- Wednesday and Friday during class times are mandatory. Meet Mondays after 4:00 PM EST as needed.
+- Any absences or lates should be communicated by emails
+- General communication will be done through Discord
 
 
 ## Getting started
