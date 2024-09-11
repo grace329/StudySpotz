@@ -22,13 +22,6 @@
     - Once ready to merge, get 2 approvals. 
     - Assign your PRs to yourself
 
-## Project Title
-
-## Platform definition 
-
-## Description 
-
-
 ## Getting started
 
 To make it easy for you to get started with GitLab, here's a list of recommended next steps.
