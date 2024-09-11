@@ -1,6 +1,6 @@
 # Team101-5
 
-## members
+## Members
 - Keta Khatri (k3khatri@uwaterloo.ca)
 - Abirami Karthikeyan (a8karthi@uwaterloo.ca)
 - Yzabelle Perez (yperez@uwaterloo.ca)
@@ -8,8 +8,24 @@
 
 ## Team Contract
 - Wednesday and Friday during class times are mandatory. Meet Mondays after 4:00 PM EST as needed.
-- Any absences or lates should be communicated by emails
-- General communication will be done through Discord
+- Location: MC 3008 or MC 3005. First person to arrive can decide and let the team know. 
+- Any absences or lates should be communicated by emails.
+- General communication will be done through Discord.
+- Major decision are to be made by the team using a majority voting system.
+- Team Roles: 
+    - **Keta**: Technical Lead
+    - **Abirami**: Project Lead
+    - **Yzabelle**: Backend Design Lead
+    - **Grace**: Frontend Design Lead
+- Git Rules:
+    - Code in individual branches: #ISSUE-Feature-Description
+    - Once ready to merge, get 2 approvals. 
+
+## Project Title
+
+## Platform definition 
+
+## Description 
 
 
 ## Getting started
@@ -61,9 +77,6 @@ When you're ready to make this README your own, just edit this file and use the 
 ## Suggestions for a good README
 
 Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
-
-## Name
-Choose a self-explaining name for your project.
 
 ## Description
 Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
