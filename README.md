@@ -20,6 +20,7 @@
 - Git Rules:
     - Code in individual branches: #ISSUE-Feature-Description
     - Once ready to merge, get 2 approvals. 
+    - Assign your PRs to yourself
 
 ## Project Title
 
