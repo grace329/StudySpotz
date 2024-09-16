@@ -5,6 +5,7 @@
 - Abirami Karthikeyan (a8karthi@uwaterloo.ca)
 - Yzabelle Perez (yperez@uwaterloo.ca)
 - Grace Xu (g55xu@uwaterloo.ca)
+- Julianne Jorda (rjjorda@uwaterloo.ca)
 
 ## Team Contract
 - Wednesday and Friday during class times are mandatory. Meet Mondays after 4:00 PM EST as needed.
