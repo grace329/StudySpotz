@@ -22,6 +22,8 @@
     - Code in individual branches: #ISSUE-Feature-Description
     - Once ready to merge, get 2 approvals. 
     - Assign your PRs to yourself
+## Project Proposal
+[Project Proposal](Project_Proposal.pdf)
 
 ## Getting started
 TESTING GIT
