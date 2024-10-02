@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "663743786478",
+    "project_id": "study-spotz-e7a5b",
+    "storage_bucket": "study-spotz-e7a5b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:663743786478:android:04fda66d2f7f226e9f32ff",
+        "android_client_info": {
+          "package_name": "com.example.studyspotz"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKWa0xao6xcOOqGaol7jtyRW6T6_rN7Qc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
