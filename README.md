@@ -25,6 +25,9 @@
 ## Project Proposal
 [Project Proposal](Project_Proposal.pdf)
 
+## Design Proposal
+[Design Proposal](Design_Proposal.pdf)
+
 ## Getting started
 TESTING GIT
 YZABELLE TEST
