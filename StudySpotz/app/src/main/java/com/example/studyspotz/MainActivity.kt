@@ -1,6 +1,7 @@
 package com.example.studyspotz
 
 import android.os.Bundle
+import android.util.Log
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -10,11 +11,14 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
 import com.example.studyspotz.databinding.ActivityMainBinding
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
+    val db = Firebase.firestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +37,22 @@ class MainActivity : AppCompatActivity() {
                 .setAction("Action", null)
                 .setAnchorView(R.id.fab).show()
         }
+        val spot = hashMapOf(
+            "faculty" to "EV1",
+            "room" to "250",
+            "floor" to "1"
+        )
+
+// Add a new document with a generated ID
+        db.collection("buildings")
+            .add(spot)
+            .addOnSuccessListener { documentReference ->
+                Log.d("fb", "DocumentSnapshot added with ID: ${documentReference.id}")
+            }
+            .addOnFailureListener { e ->
+                Log.w("fb", "Error adding document", e)
+            }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
