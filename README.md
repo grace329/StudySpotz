@@ -28,6 +28,8 @@
 ## Design Proposal
 [Design Proposal](Design_Proposal.pdf)
 
+## Release
+[Version 1.0.0 Release](https://git.uwaterloo.ca/k3khatri/team101-5/-/wikis/Version-1.0.0-Release-)
 ## Getting started
 TESTING GIT
 YZABELLE TEST
