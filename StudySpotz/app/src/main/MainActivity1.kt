@@ -10,7 +10,7 @@ import net.codebot.mobile.ui.theme.MobileTheme
 import persistence.DBStorage
 import model.Model
 
-class MainActivity : ComponentActivity() {
+class MainActivity1 : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

@@ -10,24 +10,14 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
 import com.example.studyspotz.databinding.ActivityMainBinding
-import model.Model
-import view.ViewModel
-import controller.Controller
 
-class MainActivity2 : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        //val storage = DBStorage()
-        val model = Model()
-        val viewModel = ViewModel(model)
-        val controller = Controller(model)
-
-
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
