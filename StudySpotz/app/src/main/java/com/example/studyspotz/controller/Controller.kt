@@ -1,12 +1,12 @@
-package controller
+package com.example.studyspotz.controller
 
-import model.Model
-//import entities.Task
-
-// types of actions that our controller understands
-enum class ViewEvent { Add, Del, Update, Save, Exit }
-
-class Controller(private val model: Model) {
+//import model.Model
+////import entities.Task
+//
+//// types of actions that our controller understands
+//enum class ViewEvent { Add, Del, Update, Save, Exit }
+//
+//class Controller(private val model: Model) {
 //    fun invoke(event: ViewEvent, obj: Any) {
 //        when(event) {
 //            ViewEvent.Add -> model.add(obj as Task)
@@ -16,4 +16,4 @@ class Controller(private val model: Model) {
 //            ViewEvent.Exit -> return
 //        }
 //    }
-}
+//}
