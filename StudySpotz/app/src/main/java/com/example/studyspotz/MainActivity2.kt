@@ -2,6 +2,7 @@ package com.example.studyspotz
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -32,11 +33,13 @@ class MainActivity2 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main2)
+        Log.d("MainActivity", "onCreate called")
 
         auth = FirebaseAuth.getInstance()
         button = findViewById(R.id.logout)
         textView=findViewById(R.id.user_details)
         user = auth.currentUser
+
 
         if (user == null) {
             val intent = Intent(this, Login::class.java)
