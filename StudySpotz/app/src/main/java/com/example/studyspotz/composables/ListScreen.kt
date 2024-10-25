@@ -1,4 +1,4 @@
-package com.example.studyspotz.view
+package com.example.studyspotz.composables
 
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items

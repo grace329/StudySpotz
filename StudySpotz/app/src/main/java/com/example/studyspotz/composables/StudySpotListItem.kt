@@ -1,4 +1,4 @@
-package com.example.studyspotz.view
+package com.example.studyspotz.composables
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
