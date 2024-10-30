@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.getValue
@@ -21,25 +20,22 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
-
-// Define LoginScreen
-class LoginScreen : Screen {
+// Define Signup
+class SignupScreen : Screen {
     @Composable
     override fun Content(){
-        LoginContent()
+        SignupContent()
     }
 }
 
 @Composable
-fun LoginContent() {
+fun SignupContent() {
     val navigator = LocalNavigator.currentOrThrow
-    var email by remember { mutableStateOf("")}
-    var password by remember { mutableStateOf("")}
-
+    var email by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
 
     Column(
         modifier = Modifier
@@ -48,7 +44,7 @@ fun LoginContent() {
         verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterVertically),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text("Login to an Existing Account")
+        Text("Create a New Account")
         TextField(
             value = email,
             onValueChange = {  email = it },
@@ -64,12 +60,11 @@ fun LoginContent() {
         Button(onClick = {
             navigator.push(ListScreen()) // Navigate to ListScreen
         }) {
-            Text(text ="Login", fontSize = 20.sp)
+            Text(text ="Create Account", fontSize = 20.sp)
         }
         Spacer(modifier = Modifier.height(24.dp))
-
-        TextButton(onClick = { navigator.push(SignupScreen()) }) {
-                Text(text = "Click to Create Account", fontSize = 20.sp)
+        TextButton(onClick = { navigator.push(LoginScreen()) }) {
+            Text(text = "Click to Login", fontSize = 20.sp)
         }
 
     }
