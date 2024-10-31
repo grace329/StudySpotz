@@ -1,4 +1,4 @@
-package com.example.studyspotz.view
+package com.example.studyspotz.composables
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Text

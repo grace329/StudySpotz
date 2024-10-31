@@ -8,7 +8,7 @@ import androidx.compose.material3.Surface
 import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.transitions.SlideTransition
 import com.example.studyspotz.ui.theme.MobileTheme
-import com.example.studyspotz.view.ListScreen
+import com.example.studyspotz.composables.LoginScreen
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
@@ -24,7 +24,7 @@ class MainActivity : ComponentActivity() {
             MobileTheme {
                 Surface {
                     // Initialize Voyager Navigator with ListScreen
-                    Navigator(screen = ListScreen()) { navigator ->
+                    Navigator(screen = LoginScreen()) { navigator ->
                         SlideTransition(navigator)
                     }
                 }
