@@ -9,14 +9,18 @@ import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.transitions.SlideTransition
 import com.example.studyspotz.ui.theme.MobileTheme
 import com.example.studyspotz.composables.LoginScreen
+import com.google.errorprone.annotations.Modifier
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
+
+
 
 class MainActivity : ComponentActivity() {
 
     val db = Firebase.firestore
     val storage = Firebase.storage
+    private val authViewModel = AuthViewModel() // Initialize your AuthViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,7 +28,7 @@ class MainActivity : ComponentActivity() {
             MobileTheme {
                 Surface {
                     // Initialize Voyager Navigator with ListScreen
-                    Navigator(screen = LoginScreen()) { navigator ->
+                    Navigator(screen = LoginScreen(androidx.compose.ui.Modifier, authViewModel)) { navigator ->
                         SlideTransition(navigator)
                     }
                 }
