@@ -65,6 +65,8 @@ dependencies {
 
     // Compose Activity
     implementation("androidx.activity:activity-compose:1.7.2")
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.runtime.livedata)
 
     // Voyager for navigation
     val voyagerVersion = "1.1.0-beta02"
@@ -86,14 +88,15 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     // Import the Firebase BoM
-    implementation(platform("com.google.firebase:firebase-bom:33.4.0"))
+    implementation(platform("com.google.firebase:firebase-bom:33.5.1"))
 
     // TODO: Add the dependencies for Firebase products you want to use
     // When using the BoM, don't specify versions in Firebase dependencies
     implementation("com.google.firebase:firebase-analytics")
 
     // Authentication
-    implementation("com.google.firebase:firebase-auth:23.1.0")
+    //implementation("com.google.firebase:firebase-auth:23.1.0")
+    implementation("com.google.firebase:firebase-auth")
 
 
     // Add the dependencies for any other desired Firebase products
