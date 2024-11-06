@@ -53,7 +53,7 @@ fun LoginContent(modifier: Modifier, authViewModel: AuthViewModel, studySpotView
 
     LaunchedEffect(authState.value) {
         when(authState.value) {
-            is AuthState.Authenticated -> navigator.push(ListScreen(Modifier, authViewModel,studySpotViewModel))
+            is AuthState.Authenticated -> navigator.push(HomeScreen(Modifier, authViewModel,studySpotViewModel))
             is AuthState.Error -> Toast.makeText(context,
                 (authState.value as AuthState.Error).message, Toast.LENGTH_SHORT).show()
             else -> Unit

@@ -18,13 +18,13 @@ import com.example.studyspotz.AuthState
 import com.example.studyspotz.AuthViewModel
 import com.example.studyspotz.view.StudySpotViewModel
 
-// Define the ListScreen
-class ListScreen(private val modifier: Modifier, private val authViewModel: AuthViewModel, private val studySpotViewModel: StudySpotViewModel) : Screen {
-    @Composable
-    override fun Content() {
-        ListContent(modifier, authViewModel, studySpotViewModel)
-    }
-}
+//// Define the ListScreen
+//class ListScreen(private val modifier: Modifier, private val authViewModel: AuthViewModel, private val studySpotViewModel: StudySpotViewModel) : Screen {
+//    @Composable
+//    override fun Content() {
+//        ListContent(modifier, authViewModel, studySpotViewModel)
+//    }
+//}
 
 @Composable
 fun ListContent(modifier: Modifier, authViewModel: AuthViewModel, studySpotViewModel: StudySpotViewModel ) {
