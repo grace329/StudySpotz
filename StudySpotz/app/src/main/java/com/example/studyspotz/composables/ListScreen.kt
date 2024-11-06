@@ -46,15 +46,15 @@ fun ListContent(modifier: Modifier, authViewModel: AuthViewModel) {
 
     // Sample list of study spots
     val spots = listOf(
-        StudySpot("E2 1003", "Comfy spot with outlets."),
-        StudySpot("MC 2013", "For math students."),
-        StudySpot("ENV3 1303", "Has 10+ seats."),
-        StudySpot("E2 1003", "Comfy spot with outlets."),
-        StudySpot("MC 2013", "For math students."),
-        StudySpot("ENV3 1303", "Has 10+ seats."),
-        StudySpot("E2 1003", "Comfy spot with outlets."),
-        StudySpot("MC 2013", "For math students."),
-        StudySpot("ENV3 1303", "Has 10+ seats.")
+        StudySpot("E2 1003", "Comfy spot with outlets.", "https://maps.app.goo.gl/YMgM31zrAaXsnKyU8"),
+        StudySpot("MC 2013", "For math students.", "https://maps.app.goo.gl/YMgM31zrAaXsnKyU8"),
+        StudySpot("ENV3 1303", "Has 10+ seats.", "https://maps.app.goo.gl/YMgM31zrAaXsnKyU8"),
+        StudySpot("E2 1003", "Comfy spot with outlets.", "https://maps.app.goo.gl/YMgM31zrAaXsnKyU8"),
+        StudySpot("MC 2013", "For math students.", "https://maps.app.goo.gl/YMgM31zrAaXsnKyU8"),
+        StudySpot("ENV3 1303", "Has 10+ seats.", "https://maps.app.goo.gl/YMgM31zrAaXsnKyU8"),
+        StudySpot("E2 1003", "Comfy spot with outlets.", "https://maps.app.goo.gl/YMgM31zrAaXsnKyU8"),
+        StudySpot("MC 2013", "For math students.", "https://maps.app.goo.gl/YMgM31zrAaXsnKyU8"),
+        StudySpot("ENV3 1303", "Has 10+ seats.", "https://maps.app.goo.gl/YMgM31zrAaXsnKyU8")
     )
 
     LazyColumn {
