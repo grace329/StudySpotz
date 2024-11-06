@@ -31,18 +31,19 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.studyspotz.AuthState
 import com.example.studyspotz.AuthViewModel
+import com.example.studyspotz.view.StudySpotViewModel
 
 
 // Define LoginScreen
-class LoginScreen(private val modifier: Modifier, private val authViewModel: AuthViewModel) : Screen {
+class LoginScreen(private val modifier: Modifier, private val authViewModel: AuthViewModel, private val studySpotViewModel: StudySpotViewModel) : Screen {
     @Composable
     override fun Content(){
-        LoginContent(modifier, authViewModel)
+        LoginContent(modifier, authViewModel, studySpotViewModel)
     }
 }
 
 @Composable
-fun LoginContent(modifier: Modifier, authViewModel: AuthViewModel) {
+fun LoginContent(modifier: Modifier, authViewModel: AuthViewModel, studySpotViewModel: StudySpotViewModel) {
     val navigator = LocalNavigator.currentOrThrow
     var email by remember { mutableStateOf("")}
     var password by remember { mutableStateOf("")}
@@ -52,7 +53,7 @@ fun LoginContent(modifier: Modifier, authViewModel: AuthViewModel) {
 
     LaunchedEffect(authState.value) {
         when(authState.value) {
-            is AuthState.Authenticated -> navigator.push(ListScreen(Modifier, authViewModel))
+            is AuthState.Authenticated -> navigator.push(ListScreen(Modifier, authViewModel,studySpotViewModel))
             is AuthState.Error -> Toast.makeText(context,
                 (authState.value as AuthState.Error).message, Toast.LENGTH_SHORT).show()
             else -> Unit
@@ -86,7 +87,7 @@ fun LoginContent(modifier: Modifier, authViewModel: AuthViewModel) {
         }
         Spacer(modifier = Modifier.height(24.dp))
 
-        TextButton(onClick = { navigator.push(SignupScreen(modifier, authViewModel)) }) {
+        TextButton(onClick = { navigator.push(SignupScreen(modifier, authViewModel, studySpotViewModel)) }) {
                 Text(text = "Click to Create Account", fontSize = 20.sp)
         }
 

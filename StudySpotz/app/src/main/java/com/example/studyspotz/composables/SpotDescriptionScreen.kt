@@ -22,12 +22,12 @@ class SpotDescriptionScreen(private val spot: StudySpot) : Screen {
 fun SpotDescription(spot: StudySpot) {
     Column {
         val context = LocalContext.current
-        Text(text = "Name: ${spot.name}")
-        Text(text = "Description: ${spot.description}")
+        Text(text = "Name: ${spot.building}")
+        Text(text = "Description: ${spot.room}")
 
         Button(
             onClick = {
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(spot.link))
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(spot.location))
                 context.startActivity(intent)
             },
         ) {

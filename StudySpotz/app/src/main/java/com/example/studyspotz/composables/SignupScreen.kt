@@ -28,17 +28,18 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.studyspotz.AuthState
 import com.example.studyspotz.AuthViewModel
+import com.example.studyspotz.view.StudySpotViewModel
 
 // Define Signup
-class SignupScreen(private val modifier: Modifier, private val authViewModel: AuthViewModel) : Screen {
+class SignupScreen(private val modifier: Modifier, private val authViewModel: AuthViewModel, private val studySpotViewModel: StudySpotViewModel) : Screen {
     @Composable
     override fun Content(){
-        SignupContent(modifier,authViewModel)
+        SignupContent(modifier,authViewModel, studySpotViewModel)
     }
 }
 
 @Composable
-fun SignupContent(modifier: Modifier, authViewModel: AuthViewModel) {
+fun SignupContent(modifier: Modifier, authViewModel: AuthViewModel, studySpotViewModel: StudySpotViewModel) {
     val navigator = LocalNavigator.currentOrThrow
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -48,7 +49,7 @@ fun SignupContent(modifier: Modifier, authViewModel: AuthViewModel) {
 
     LaunchedEffect(authState.value) {
         when(authState.value) {
-            is AuthState.Authenticated -> navigator.push(ListScreen(Modifier, authViewModel))
+            is AuthState.Authenticated -> navigator.push(ListScreen(Modifier, authViewModel, studySpotViewModel))
             is AuthState.Error -> Toast.makeText(context,
                 (authState.value as AuthState.Error).message, Toast.LENGTH_SHORT).show()
             else -> Unit
@@ -82,7 +83,7 @@ fun SignupContent(modifier: Modifier, authViewModel: AuthViewModel) {
         }
         Spacer(modifier = Modifier.height(24.dp))
         TextButton(onClick = {
-            navigator.push(LoginScreen(modifier, authViewModel))
+            navigator.push(LoginScreen(modifier, authViewModel, studySpotViewModel))
         }) {
             Text(text = "Click to Login", fontSize = 20.sp)
         }
