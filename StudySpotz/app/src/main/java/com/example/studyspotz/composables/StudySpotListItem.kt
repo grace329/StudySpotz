@@ -38,7 +38,7 @@ fun StudySpotListItem(spot: StudySpot, onClick: (StudySpot) -> Unit) {
                 modifier = Modifier.weight(1f)  // So the card description takes up more space than arrow
             ) {
                 Text(
-                    text = spot.name,
+                    text = spot.building,
                     style = MaterialTheme.typography.titleMedium.copy(
                         fontWeight = FontWeight.Bold
                     ),
@@ -47,7 +47,7 @@ fun StudySpotListItem(spot: StudySpot, onClick: (StudySpot) -> Unit) {
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
-                    text = spot.description,
+                    text = spot.room,
                     style = MaterialTheme.typography.bodyMedium,
                     color = Color.Gray,
                     fontSize = 14.sp
