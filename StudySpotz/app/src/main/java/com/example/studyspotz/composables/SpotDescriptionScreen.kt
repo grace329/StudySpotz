@@ -24,12 +24,21 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CenterAlignedTopAppBar
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.TopAppBarDefaults.topAppBarColors
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -44,91 +53,136 @@ class SpotDescriptionScreen(private val spot: StudySpot) : Screen {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SpotDescription(spot: StudySpot) {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp)
-    ) {
+    val context = LocalContext.current
 
-        val context = LocalContext.current
-
-        Text(
-            "${spot.building} ${spot.room}",
-            fontSize = 40.sp,
-            modifier = Modifier.align(Alignment.CenterHorizontally)
-        )
-        Spacer(modifier = Modifier.size(20.dp))
-        Text("Description")
-        Text("Faculty: ${spot.faculty}")
-        Spacer(modifier = Modifier.weight(1f))
-        Row {
-            Button(
-                onClick = {
-                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(spot.location))
-                    context.startActivity(intent)
-                },
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFFf17e7e),
-                    contentColor = Color.White
+    Scaffold(
+        topBar = {
+            CenterAlignedTopAppBar(
+                colors = topAppBarColors(
+                    containerColor = MaterialTheme.colorScheme.primaryContainer,
+                    titleContentColor = MaterialTheme.colorScheme.primary,
                 ),
-                modifier = Modifier
-                    .padding(16.dp)
-                    .height(60.dp)
-                    .fillMaxWidth(0.7f)
-            ) {
-                Text(text = "Directions", fontSize = 27.sp)
-            }
-            FloatingActionButton(
-                onClick = { /*do something*/ },
-                containerColor = Color(0xFFf17e7e),
-                contentColor = Color.White,
-                shape = CircleShape,
-                modifier = Modifier
-                    .padding(16.dp)
-                    .height(60.dp)
-                    .width(60.dp)
-                    .fillMaxWidth(0.7f)
-            ) {
-                Icon(Icons.Filled.Favorite, contentDescription = "Localized description")
-            }
-        }
-
-        Spacer(modifier = Modifier.size(20.dp))
-        Card(
-            colors = CardDefaults.cardColors(
-                containerColor = Color(0xFFfbd8d8)
-            ),
-            modifier = Modifier
-                .fillMaxWidth()
-        ) {
-
-            Text(" Amenities:")
-            Text(" -   Chargers")
-            Text(" -   White/Chalk Board")
-
-        }
-        Spacer(modifier = Modifier.size(20.dp))
-        Card(
-            colors = CardDefaults.cardColors(
-                containerColor = Color(0xFFfbd8d8)
-            )
-        ) {
-            LazyRow(
-                modifier = Modifier
-                    .height(250.dp)
-            ) {
-                items(spot.images) { image ->
-                    AsyncImage(
-                        model = image,
-                        contentDescription = "Image of ${spot.building}",
-                        modifier = Modifier
-                            .padding(8.dp)
-                            .clip(RoundedCornerShape(12.dp))
+                title = {
+                    Text(
+                        "Study Spot",
+                        fontSize = 27.sp,
                     )
+                },
+                navigationIcon = {
+                    IconButton(onClick = { }) {
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                            contentDescription = "Localized description"
+                        )
+                    }
+                }
+            )
+        },
+        bottomBar = {
+            BottomAppBar(
+                containerColor = MaterialTheme.colorScheme.primaryContainer,
+                contentColor = MaterialTheme.colorScheme.primary,
+            ) {
+                Row {
+                    Button(
+                        onClick = {
+                            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(spot.location))
+                            context.startActivity(intent)
+                        },
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = MaterialTheme.colorScheme.primary,
+                            contentColor = Color.White
+                        ),
+                        modifier = Modifier
+                            .padding(16.dp)
+                            .height(60.dp)
+                            .fillMaxWidth(0.7f)
+                    ) {
+                        Text(text = "Directions", fontSize = 27.sp)
+                    }
+                    FloatingActionButton(
+                        onClick = { /*do something*/ },
+                        containerColor = MaterialTheme.colorScheme.primary,
+                        contentColor = Color.White,
+                        shape = CircleShape,
+                        modifier = Modifier
+                            .padding(16.dp)
+                            .height(60.dp)
+                            .width(60.dp)
+                            .fillMaxWidth(0.7f)
+                    ) {
+                        Icon(Icons.Filled.Favorite, contentDescription = "Localized description")
+                    }
                 }
             }
+        }
+    ) { innerPadding ->
+        Column(
+            modifier = Modifier
+                .padding(innerPadding),
+        ) {
+            Spacer(modifier = Modifier.size(20.dp))
+            Text(
+                "${spot.building} ${spot.room}",
+                fontSize = 38.sp,
+                modifier = Modifier.align(Alignment.CenterHorizontally)
+            )
+            HorizontalDivider(thickness = 2.dp)
+            Spacer(modifier = Modifier.size(30.dp))
+
+            Text(" Faculty: ${spot.faculty}")
+
+            Spacer(modifier = Modifier.size(20.dp))
+            Card(
+                colors = CardDefaults.cardColors(
+                    containerColor = Color.White
+                ),
+                modifier = Modifier
+                    .fillMaxWidth()
+            ) {
+
+                Text(" Amenities:")
+                Text(" -   Chargers")
+                Text(" -   White/Chalk Board")
+
+            }
+            Spacer(modifier = Modifier.size(40.dp))
+            Spacer(modifier = Modifier.weight(1f))
+            Card(
+                colors = CardDefaults.cardColors(
+                    containerColor = MaterialTheme.colorScheme.secondaryContainer
+                )
+            ) {
+                LazyRow(
+                    modifier = Modifier
+                        .height(250.dp)
+                ) {
+                    items(spot.images) { image ->
+                        AsyncImage(
+                            model = image,
+                            contentDescription = "Image of ${spot.building}",
+                            modifier = Modifier
+                                .padding(8.dp)
+                                .clip(RoundedCornerShape(12.dp))
+                        )
+                    }
+                }
+            }
+            Spacer(modifier = Modifier.size(40.dp))
+
+            Text(" Rating")
+            AsyncImage(
+                model = "https://thumbs.dreamstime.com/b/print-161109189.jpg",
+                contentDescription = "Image",
+                modifier = Modifier
+                    .padding(8.dp)
+                    .clip(RoundedCornerShape(12.dp))
+            )
+            Spacer(modifier = Modifier.size(10.dp))
+
         }
     }
 }
