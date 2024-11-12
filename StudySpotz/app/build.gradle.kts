@@ -99,6 +99,10 @@ dependencies {
     //implementation("com.google.firebase:firebase-auth:23.1.0")
     implementation("com.google.firebase:firebase-auth")
 
+    //Images in Description Page
+    implementation("io.coil-kt.coil3:coil-compose:3.0.0")
+    implementation("io.coil-kt.coil3:coil-network-okhttp:3.0.0")
+
 
     // Add the dependencies for any other desired Firebase products
     // https://firebase.google.com/docs/android/setup#available-libraries
