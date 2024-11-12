@@ -1,4 +1,5 @@
 package com.example.studyspotz.composables
+
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.material3.Text
@@ -53,7 +54,7 @@ fun LoginContent(modifier: Modifier, authViewModel: AuthViewModel, studySpotView
 
     LaunchedEffect(authState.value) {
         when(authState.value) {
-            is AuthState.Authenticated -> navigator.push(ListScreen(Modifier, authViewModel,studySpotViewModel))
+            is AuthState.Authenticated -> navigator.push(GalleryScreen(Modifier, authViewModel,studySpotViewModel))
             is AuthState.Error -> Toast.makeText(context,
                 (authState.value as AuthState.Error).message, Toast.LENGTH_SHORT).show()
             else -> Unit
