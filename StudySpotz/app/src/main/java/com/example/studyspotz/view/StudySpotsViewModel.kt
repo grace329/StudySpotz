@@ -13,6 +13,9 @@ class StudySpotViewModel(private val repository: StudySpotsModel) : ViewModel() 
     private val _studySpots = MutableStateFlow<List<StudySpot>>(emptyList())
     val studySpots: StateFlow<List<StudySpot>> = _studySpots
 
+    private val _favoriteSpots = MutableStateFlow<List<String>>(emptyList())
+    val favoriteSpots: StateFlow<List<String>> = _favoriteSpots
+
     private val _isLoading = MutableStateFlow(false)
     val isLoading: StateFlow<Boolean> = _isLoading
 
@@ -21,6 +24,7 @@ class StudySpotViewModel(private val repository: StudySpotsModel) : ViewModel() 
 
     init {
         fetchAllStudySpots()
+        fetchFavoriteSpots()
     }
 
     private fun fetchAllStudySpots() {
@@ -34,6 +38,44 @@ class StudySpotViewModel(private val repository: StudySpotsModel) : ViewModel() 
                 _studySpots.value = emptyList() // Clear study spots on error
             } finally {
                 _isLoading.value = false
+            }
+        }
+    }
+
+    private fun fetchFavoriteSpots() {
+        viewModelScope.launch {
+            try {
+                val favoriteIds = repository.getFavoriteStudySpots()
+                _favoriteSpots.value = favoriteIds
+            } catch (e: Exception) {
+                _error.value = "Failed to load favorite spots"
+            }
+        }
+    }
+
+    fun isFavorite(spotId: String): StateFlow<Boolean> {
+        val isFavorited = _favoriteSpots.value.contains(spotId)
+        // Because we are observing the favouriteSpots state
+        return MutableStateFlow(isFavorited)
+    }
+
+    fun toggleFavorite(spotId: String) {
+        viewModelScope.launch {
+            try {
+                // Collect the current favorite status from the StateFlow
+                val isFavorited = _favoriteSpots.value.contains(spotId) // check from the list in ViewModel
+
+                if (isFavorited) {
+                    repository.removeFavorite(spotId)
+                    // Remove the spot from the favouriteSpots list
+                    _favoriteSpots.value -= spotId
+                } else {
+                    repository.addFavorite(spotId)
+                    // Add the spot to the favouriteSpots list
+                    _favoriteSpots.value += spotId
+                }
+            } catch (e: Exception) {
+                _error.value = "Failed to update favorite spots"
             }
         }
     }
