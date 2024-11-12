@@ -63,6 +63,7 @@ dependencies {
     implementation(libs.androidx.foundation.android)
     implementation(libs.androidx.material3.android)
 
+
     // Compose Activity
     implementation("androidx.activity:activity-compose:1.7.2")
     implementation(libs.androidx.navigation.compose)

@@ -44,7 +44,7 @@ fun GalleryContent(modifier: Modifier, authViewModel: AuthViewModel, studySpotVi
     val navigator = LocalNavigator.currentOrThrow
     val studySpots by studySpotViewModel.studySpots.collectAsState()
 
-    Column(modifier = modifier.fillMaxSize().padding(16.dp)) {
+    Column(modifier = modifier.fillMaxSize()) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
