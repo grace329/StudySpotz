@@ -120,6 +120,8 @@ fun HomeContent(modifier: Modifier, authViewModel: AuthViewModel, studySpotViewM
     val studySpots by studySpotViewModel.studySpots.collectAsState() // Collect study spots from the ViewModel
     var search by remember { mutableStateOf("") }
     var isListView by remember { mutableStateOf(true)}
+    var profileClicked by remember { mutableStateOf(false)}
+
 
     Column(
         modifier = Modifier
@@ -131,6 +133,7 @@ fun HomeContent(modifier: Modifier, authViewModel: AuthViewModel, studySpotViewM
         Row( modifier = Modifier
             .fillMaxWidth()
             .height(56.dp)){
+            // Search
             OutlinedTextField(
                 value = search,
                 onValueChange = {  search = it },
@@ -146,19 +149,32 @@ fun HomeContent(modifier: Modifier, authViewModel: AuthViewModel, studySpotViewM
                     )                },
                 singleLine = true
             )
-            IconButton(
-                onClick = { authViewModel.signout() },
-                modifier = Modifier
-                    .aspectRatio(1f)) {
-                Icon(
-                    Icons.Filled.AccountCircle,
-                    contentDescription = "Account",
-                    modifier = Modifier.size(36.dp)
-                )
+            // Profile with Sign Out
+            Box () {
+                IconButton(
+                    onClick = { profileClicked = !profileClicked },
+                    modifier = Modifier
+                        .aspectRatio(1f)
+                ) {
+                    Icon(
+                        Icons.Filled.AccountCircle,
+                        contentDescription = "Account",
+                        modifier = Modifier.size(36.dp)
+                    )
+                }
+                DropdownMenu(
+                    expanded = profileClicked,
+                    onDismissRequest = { profileClicked = false },
+                    offset = DpOffset(x = 0.dp, y = 10.dp)
+                ) {
+                    DropdownMenuItem(
+                        onClick = { authViewModel.signout() },
+                        text = { Text("Sign Out") }
+                    )
+                }
             }
         }
         Row (modifier = Modifier.fillMaxWidth()) {
-
             Row ( ) {
                 FilterWithDropdown()
             }
