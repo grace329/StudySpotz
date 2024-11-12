@@ -47,10 +47,15 @@ import androidx.compose.ui.unit.sp
 import android.util.Log
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import cafe.adriel.voyager.navigator.LocalNavigator
+import cafe.adriel.voyager.navigator.currentOrThrow
 import com.example.studyspotz.view.StudySpotViewModel
 
 // Screen for showing the description of a study spot
-class SpotDescriptionScreen(private val spot: StudySpot, private val studySpotViewModel: StudySpotViewModel) : Screen {
+class SpotDescriptionScreen(
+    private val spot: StudySpot,
+    private val studySpotViewModel: StudySpotViewModel
+) : Screen {
     @Composable
     override fun Content() {
         SpotDescription(spot, studySpotViewModel)
@@ -59,9 +64,10 @@ class SpotDescriptionScreen(private val spot: StudySpot, private val studySpotVi
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SpotDescription(spot: StudySpot,   studySpotViewModel: StudySpotViewModel) {
+fun SpotDescription(spot: StudySpot, studySpotViewModel: StudySpotViewModel) {
     val context = LocalContext.current
     val isFavorited by studySpotViewModel.isFavorite(spot.id).collectAsState(false)
+    val navigator = LocalNavigator.currentOrThrow
 
     Scaffold(
         topBar = {
@@ -77,10 +83,11 @@ fun SpotDescription(spot: StudySpot,   studySpotViewModel: StudySpotViewModel) {
                     )
                 },
                 navigationIcon = {
-                    IconButton(onClick = { }) {
+                    IconButton(onClick = { navigator.pop() }) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = "Localized description"
+                            contentDescription = "Back Button",
+                            tint = MaterialTheme.colorScheme.primary
                         )
                     }
                 }
@@ -119,7 +126,7 @@ fun SpotDescription(spot: StudySpot,   studySpotViewModel: StudySpotViewModel) {
                             .width(60.dp)
                             .fillMaxWidth(0.7f)
                     ) {
-                        Icon(Icons.Filled.Favorite, contentDescription = "Localized description")
+                        Icon(Icons.Filled.Favorite, contentDescription = "Favorite Button")
                     }
                 }
             }
@@ -127,18 +134,21 @@ fun SpotDescription(spot: StudySpot,   studySpotViewModel: StudySpotViewModel) {
     ) { innerPadding ->
         Column(
             modifier = Modifier
+                .padding(16.dp)
                 .padding(innerPadding),
-        ) {
+
+            ) {
             Spacer(modifier = Modifier.size(20.dp))
             Text(
                 "${spot.building} ${spot.room}",
                 fontSize = 38.sp,
                 modifier = Modifier.align(Alignment.CenterHorizontally)
             )
+            Spacer(modifier = Modifier.size(20.dp))
             HorizontalDivider(thickness = 2.dp)
             Spacer(modifier = Modifier.size(30.dp))
 
-            Text(" Faculty: ${spot.faculty}")
+            Text(" Faculty: ${spot.faculty}", fontSize = 28.sp)
 
             Spacer(modifier = Modifier.size(20.dp))
             Card(
@@ -149,9 +159,8 @@ fun SpotDescription(spot: StudySpot,   studySpotViewModel: StudySpotViewModel) {
                     .fillMaxWidth()
             ) {
 
-                Text(" Amenities:")
-                Text(" -   Chargers")
-                Text(" -   White/Chalk Board")
+                Text(" Amenities:", fontSize = 28.sp)
+                Text(" -   Chargers", fontSize = 28.sp)
 
             }
             Spacer(modifier = Modifier.size(40.dp))
@@ -163,7 +172,7 @@ fun SpotDescription(spot: StudySpot,   studySpotViewModel: StudySpotViewModel) {
             ) {
                 LazyRow(
                     modifier = Modifier
-                        .height(250.dp)
+                        .height(350.dp)
                 ) {
                     items(spot.images) { image ->
                         AsyncImage(
@@ -188,14 +197,6 @@ fun SpotDescription(spot: StudySpot,   studySpotViewModel: StudySpotViewModel) {
             ) {
                 Text(text = if (isFavorited) "Remove from Favorites" else "Add to Favorites")
             }
-            Text(" Rating")
-            AsyncImage(
-                model = "https://thumbs.dreamstime.com/b/print-161109189.jpg",
-                contentDescription = "Image",
-                modifier = Modifier
-                    .padding(8.dp)
-                    .clip(RoundedCornerShape(12.dp))
-            )
             Spacer(modifier = Modifier.size(10.dp))
 
         }
