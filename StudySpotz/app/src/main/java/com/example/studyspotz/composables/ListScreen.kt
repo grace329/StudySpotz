@@ -42,7 +42,7 @@ fun ListContent(modifier: Modifier, authViewModel: AuthViewModel, studySpotViewM
     LazyColumn {
         items(studySpots) { spot ->
             StudySpotListItem(spot) {
-                navigator.push(SpotDescriptionScreen(it)) // Pass the study spot to the next screen
+                navigator.push(SpotDescriptionScreen(it, studySpotViewModel)) // Pass the study spot to the next screen
             }
         }
 

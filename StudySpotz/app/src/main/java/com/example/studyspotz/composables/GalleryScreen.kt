@@ -54,7 +54,7 @@ fun GalleryContent(modifier: Modifier, authViewModel: AuthViewModel, studySpotVi
         ) {
             items(studySpots) { spot ->
                 StudySpotCard(spot) {
-                    navigator.push(SpotDescriptionScreen(spot))
+                    navigator.push(SpotDescriptionScreen(spot, studySpotViewModel))
                 }
             }
         }

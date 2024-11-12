@@ -44,19 +44,24 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.sp
 
+import android.util.Log
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import com.example.studyspotz.view.StudySpotViewModel
 
 // Screen for showing the description of a study spot
-class SpotDescriptionScreen(private val spot: StudySpot) : Screen {
+class SpotDescriptionScreen(private val spot: StudySpot, private val studySpotViewModel: StudySpotViewModel) : Screen {
     @Composable
     override fun Content() {
-        SpotDescription(spot)
+        SpotDescription(spot, studySpotViewModel)
     }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SpotDescription(spot: StudySpot) {
+fun SpotDescription(spot: StudySpot,   studySpotViewModel: StudySpotViewModel) {
     val context = LocalContext.current
+    val isFavorited by studySpotViewModel.isFavorite(spot.id).collectAsState(false)
 
     Scaffold(
         topBar = {
@@ -173,6 +178,16 @@ fun SpotDescription(spot: StudySpot) {
             }
             Spacer(modifier = Modifier.size(40.dp))
 
+            // TODO: Update with favourite UI button
+            Text(text = "IS favourite: $isFavorited")
+            Button(
+                onClick = {
+                    studySpotViewModel.toggleFavorite(spot.id)
+                    Log.d("SpotDescriptionScreen", "Toggled favorite for ${spot.id}")
+                },
+            ) {
+                Text(text = if (isFavorited) "Remove from Favorites" else "Add to Favorites")
+            }
             Text(" Rating")
             AsyncImage(
                 model = "https://thumbs.dreamstime.com/b/print-161109189.jpg",
