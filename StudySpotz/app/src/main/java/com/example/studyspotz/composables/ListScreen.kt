@@ -47,14 +47,5 @@ fun ListContent(modifier: Modifier, authViewModel: AuthViewModel, studySpotViewM
         }
 
     }
-    // Use a Column to stack items vertically
-    Column {
-        // Sign out button placed above the LazyColumn
-        Button(onClick = {
-            authViewModel.signout()
-        }) {
-            Text("Sign Out")
-        }
-    }
 
 }
