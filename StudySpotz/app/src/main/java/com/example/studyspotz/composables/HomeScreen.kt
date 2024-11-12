@@ -223,7 +223,7 @@ fun HomeContent(modifier: Modifier, authViewModel: AuthViewModel, studySpotViewM
             if (isListView) {
                 ListContent(Modifier, authViewModel, studySpotViewModel) // Nested composable
             } else {
-                Text("Gallery View Here")
+                GalleryContent(Modifier, authViewModel, studySpotViewModel)
             }
             }
     }
