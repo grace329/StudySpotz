@@ -53,12 +53,6 @@ class StudySpotViewModel(private val repository: StudySpotsModel) : ViewModel() 
         }
     }
 
-    fun isFavorite(spotId: String): StateFlow<Boolean> {
-        val isFavorited = _favoriteSpots.value.contains(spotId)
-        // Because we are observing the favouriteSpots state
-        return MutableStateFlow(isFavorited)
-    }
-
     fun toggleFavorite(spotId: String) {
         viewModelScope.launch {
             try {
