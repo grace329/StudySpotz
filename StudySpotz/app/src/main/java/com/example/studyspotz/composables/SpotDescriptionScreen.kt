@@ -45,6 +45,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.sp
 
 import android.util.Log
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.tween
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import cafe.adriel.voyager.navigator.LocalNavigator
@@ -66,8 +69,10 @@ class SpotDescriptionScreen(
 @Composable
 fun SpotDescription(spot: StudySpot, studySpotViewModel: StudySpotViewModel) {
     val context = LocalContext.current
-    val isFavorited by studySpotViewModel.isFavorite(spot.id).collectAsState(false)
     val navigator = LocalNavigator.currentOrThrow
+    val favoriteSpots by studySpotViewModel.favoriteSpots.collectAsState()
+    val isFavorited = favoriteSpots.contains(spot.id)
+    val _containerColor = if (isFavorited) Color.Magenta else MaterialTheme.colorScheme.primary
 
     Scaffold(
         topBar = {
@@ -116,8 +121,12 @@ fun SpotDescription(spot: StudySpot, studySpotViewModel: StudySpotViewModel) {
                         Text(text = "Directions", fontSize = 27.sp)
                     }
                     FloatingActionButton(
-                        onClick = { /*do something*/ },
-                        containerColor = MaterialTheme.colorScheme.primary,
+                        onClick = {
+                            studySpotViewModel.toggleFavorite(spot.id)
+                            Log.d("SpotDescriptionScreen", "Toggled favorite for ${spot.id}")
+                        },
+
+                        containerColor = _containerColor,
                         contentColor = Color.White,
                         shape = CircleShape,
                         modifier = Modifier
@@ -125,9 +134,12 @@ fun SpotDescription(spot: StudySpot, studySpotViewModel: StudySpotViewModel) {
                             .height(60.dp)
                             .width(60.dp)
                             .fillMaxWidth(0.7f)
-                    ) {
+                    )
+
+                    {
                         Icon(Icons.Filled.Favorite, contentDescription = "Favorite Button")
                     }
+                    Spacer(modifier = Modifier.size(10.dp))
                 }
             }
         }
@@ -186,18 +198,6 @@ fun SpotDescription(spot: StudySpot, studySpotViewModel: StudySpotViewModel) {
                 }
             }
             Spacer(modifier = Modifier.size(40.dp))
-
-            // TODO: Update with favourite UI button
-            Text(text = "IS favourite: $isFavorited")
-            Button(
-                onClick = {
-                    studySpotViewModel.toggleFavorite(spot.id)
-                    Log.d("SpotDescriptionScreen", "Toggled favorite for ${spot.id}")
-                },
-            ) {
-                Text(text = if (isFavorited) "Remove from Favorites" else "Add to Favorites")
-            }
-            Spacer(modifier = Modifier.size(10.dp))
 
         }
     }
