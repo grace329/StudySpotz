@@ -18,6 +18,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.res.painterResource
@@ -75,7 +76,7 @@ fun GalleryContent(modifier: Modifier, authViewModel: AuthViewModel, studySpotVi
 fun StudySpotCard(spot: StudySpot, onClick: (StudySpot) -> Unit) {
     Card(
         modifier = Modifier
-            .size(width = 180.dp, height = 250.dp) // Set a fixed card size
+            .size(width = 180.dp, height = 250.dp)
             .padding(10.dp)
             .clickable { onClick(spot) },
         elevation = CardDefaults.cardElevation(8.dp)
@@ -89,8 +90,9 @@ fun StudySpotCard(spot: StudySpot, onClick: (StudySpot) -> Unit) {
                 contentDescription = "Main Image of ${spot.building}",
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(150.dp) // Fixed image height for consistency
-                    .clip(RoundedCornerShape(12.dp))
+                    .height(150.dp)
+                    .clip(RoundedCornerShape(12.dp)),
+                contentScale = ContentScale.Crop
             )
             Spacer(modifier = Modifier.height(8.dp))
 
@@ -100,4 +102,6 @@ fun StudySpotCard(spot: StudySpot, onClick: (StudySpot) -> Unit) {
         }
     }
 }
+
+
 
