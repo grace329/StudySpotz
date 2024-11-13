@@ -1,5 +1,7 @@
 package com.example.studyspotz.composables
 
+import androidx.compose.ui.draw.clip
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -16,6 +18,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.res.painterResource
@@ -27,6 +30,8 @@ import com.example.studyspotz.model.StudySpot
 import com.example.studyspotz.AuthViewModel
 import com.example.studyspotz.R
 import com.example.studyspotz.composables.SpotDescriptionScreen
+import coil3.compose.AsyncImage
+
 
 class GalleryScreen(
     private val modifier: Modifier,
@@ -44,7 +49,7 @@ fun GalleryContent(modifier: Modifier, authViewModel: AuthViewModel, studySpotVi
     val navigator = LocalNavigator.currentOrThrow
     val studySpots by studySpotViewModel.studySpots.collectAsState()
 
-    Column(modifier = modifier.fillMaxSize()) {
+    Column(modifier = modifier.fillMaxSize().padding(16.dp)) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
@@ -71,26 +76,32 @@ fun GalleryContent(modifier: Modifier, authViewModel: AuthViewModel, studySpotVi
 fun StudySpotCard(spot: StudySpot, onClick: (StudySpot) -> Unit) {
     Card(
         modifier = Modifier
-            .fillMaxWidth()
+            .size(width = 180.dp, height = 250.dp)
             .padding(10.dp)
             .clickable { onClick(spot) },
         elevation = CardDefaults.cardElevation(8.dp)
     ) {
         Column(
-            modifier = Modifier.padding(16.dp),
+            modifier = Modifier.padding(8.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Image(
-                painter = painterResource(id = R.drawable.mc), // Change this for actual image!
-                contentDescription = "Image of ${spot.building}",
+            AsyncImage(
+                model = spot.images.getOrNull(0),
+                contentDescription = "Main Image of ${spot.building}",
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(120.dp)
+                    .height(150.dp)
+                    .clip(RoundedCornerShape(12.dp)),
+                contentScale = ContentScale.Crop
             )
             Spacer(modifier = Modifier.height(8.dp))
+
             Text(text = spot.building, fontSize = 18.sp, color = Color.Black)
             Spacer(modifier = Modifier.height(4.dp))
             Text(text = spot.room, fontSize = 14.sp, color = Color.Gray)
         }
     }
 }
+
+
+
