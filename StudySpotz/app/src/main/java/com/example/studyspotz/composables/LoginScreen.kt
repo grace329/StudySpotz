@@ -1,5 +1,6 @@
 package com.example.studyspotz.composables
 import android.widget.Toast
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.material3.Text
 import androidx.compose.material3.Button
@@ -13,6 +14,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
@@ -26,11 +30,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.studyspotz.AuthState
 import com.example.studyspotz.AuthViewModel
+import com.example.studyspotz.R
 import com.example.studyspotz.view.StudySpotViewModel
 
 
@@ -47,6 +56,7 @@ fun LoginContent(modifier: Modifier, authViewModel: AuthViewModel, studySpotView
     val navigator = LocalNavigator.currentOrThrow
     var email by remember { mutableStateOf("")}
     var password by remember { mutableStateOf("")}
+    var showPassword by remember { mutableStateOf(false)}
 
     val authState = authViewModel.authState.observeAsState()
     val context = LocalContext.current
@@ -79,7 +89,18 @@ fun LoginContent(modifier: Modifier, authViewModel: AuthViewModel, studySpotView
             onValueChange = {  password = it },
             label = { Text("Password") },
             modifier = Modifier.fillMaxWidth(),
-        )
+            visualTransformation = if (showPassword) VisualTransformation.None else PasswordVisualTransformation(),
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+            singleLine = true,
+            trailingIcon = {
+                val icon = if (showPassword) R.drawable.visible else R.drawable.visibility_off
+                Icon (
+                    painter = painterResource(id = icon),
+                    contentDescription = "show/hide password",
+                    modifier = Modifier.clickable { showPassword = !showPassword }
+                )
+            }
+            )
         Button(onClick = {
             authViewModel.login(email, password)
         }) {
