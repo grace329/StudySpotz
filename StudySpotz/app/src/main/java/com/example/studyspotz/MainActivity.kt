@@ -10,15 +10,20 @@ import cafe.adriel.voyager.transitions.SlideTransition
 import com.example.studyspotz.ui.theme.MobileTheme
 import com.example.studyspotz.composables.LoginScreen
 import com.example.studyspotz.model.StudySpotsModel
+import com.example.studyspotz.persistence.FirebaseStorage
 import com.example.studyspotz.view.StudySpotViewModel
+import com.google.firebase.FirebaseApp
 
 class MainActivity : ComponentActivity() {
     private val authViewModel = AuthViewModel()
-    private val studySpotModel = StudySpotsModel()
+    private val firebaseStorage = FirebaseStorage()
+    private val studySpotModel = StudySpotsModel(firebaseStorage)
     private val studySpotViewModel = StudySpotViewModel(studySpotModel)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // Initialize firebase
+        FirebaseApp.initializeApp(this)
         setContent {
             MobileTheme {
                 Surface {
