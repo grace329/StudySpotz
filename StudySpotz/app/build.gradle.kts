@@ -106,4 +106,10 @@ dependencies {
 
     // Add the dependencies for any other desired Firebase products
     // https://firebase.google.com/docs/android/setup#available-libraries
+
+    // Testing
+    androidTestImplementation(libs.androidx.junit.v115)
+    androidTestImplementation(libs.kotlin.test)
+    androidTestImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.0")
+
 }
