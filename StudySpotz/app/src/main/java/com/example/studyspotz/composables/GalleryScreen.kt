@@ -50,12 +50,10 @@ fun GalleryContent(modifier: Modifier, authViewModel: AuthViewModel, studySpotVi
     val navigator = LocalNavigator.currentOrThrow
     val studySpots by studySpotViewModel.studySpots.collectAsState()
 
-    // Filtered list based on search query
-    val filteredStudySpots = studySpots.filter {
-        it.building.contains(search, ignoreCase = true) ||
-                it.room.contains(search, ignoreCase = true) ||
-                it.location.contains(search, ignoreCase = true) ||
-                (it.faculty?.contains(search, ignoreCase = true) == true)
+    val filteredStudySpots = if (search.isEmpty()) {
+        studySpots
+    } else {
+        studySpotViewModel.filterStudySpots(search)
     }
 
     Column(modifier = modifier.fillMaxSize().padding(16.dp)) {
@@ -66,11 +64,7 @@ fun GalleryContent(modifier: Modifier, authViewModel: AuthViewModel, studySpotVi
             columns = GridCells.Fixed(2), // Adjust columns?
             modifier = Modifier.fillMaxSize()
         ) {
-//            items(studySpots) { spot ->
-//                StudySpotCard(spot) {
-//                    navigator.push(SpotDescriptionScreen(spot, studySpotViewModel))
-//                }
-//            }
+
             items(filteredStudySpots) { spot ->
                 StudySpotCard(spot) {
                     navigator.push(SpotDescriptionScreen(spot, studySpotViewModel))

@@ -19,13 +19,6 @@ import com.example.studyspotz.AuthViewModel
 import com.example.studyspotz.view.StudySpotViewModel
 
 //// Define the ListScreen
-//class ListScreen(private val modifier: Modifier, private val authViewModel: AuthViewModel, private val studySpotViewModel: StudySpotViewModel) : Screen {
-//    @Composable
-//    override fun Content() {
-//        ListContent(modifier, authViewModel, studySpotViewModel)
-//    }
-//}
-
 @Composable
 fun ListContent(modifier: Modifier, authViewModel: AuthViewModel, studySpotViewModel: StudySpotViewModel, search : String ) {
     val navigator = LocalNavigator.currentOrThrow
@@ -37,13 +30,6 @@ fun ListContent(modifier: Modifier, authViewModel: AuthViewModel, studySpotViewM
         studySpotViewModel.filterStudySpots(search)
     }
 
-    // Filtered list based on search query
-//    val filteredStudySpots = studySpots.filter {
-//        it.building.contains(search, ignoreCase = true) ||
-//                it.room.contains(search, ignoreCase = true) ||
-//                it.location.contains(search, ignoreCase = true) ||
-//                (it.faculty?.contains(search, ignoreCase = true) == true)
-//    }
     LaunchedEffect(authState.value) {
         when(authState.value) {
             is AuthState.Unauthenticated -> navigator.push(LoginScreen(Modifier, authViewModel,studySpotViewModel ))
@@ -51,14 +37,6 @@ fun ListContent(modifier: Modifier, authViewModel: AuthViewModel, studySpotViewM
         }
     }
 
-//    LazyColumn {
-//        items(studySpots) { spot ->
-//            StudySpotListItem(spot) {
-//                navigator.push(SpotDescriptionScreen(it, studySpotViewModel)) // Pass the study spot to the next screen
-//            }
-//        }
-//
-//    }
     LazyColumn(modifier = modifier) {
         items(filteredStudySpots) { spot ->
             StudySpotListItem(spot) {
