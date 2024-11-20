@@ -47,9 +47,16 @@ import androidx.compose.ui.unit.sp
 import android.util.Log
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.CheckCircle
+import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import com.example.studyspotz.view.StudySpotViewModel
@@ -152,17 +159,54 @@ fun SpotDescription(spot: StudySpot, studySpotViewModel: StudySpotViewModel) {
             ) {
             Spacer(modifier = Modifier.size(20.dp))
             Text(
-                "${spot.building} ${spot.room}",
-                fontSize = 38.sp,
-                modifier = Modifier.align(Alignment.CenterHorizontally)
+                "${spot.building}",
+                fontSize = 42.sp,
+                modifier = Modifier.align(Alignment.CenterHorizontally),
+                lineHeight = 50.sp,
+                fontWeight = FontWeight.SemiBold
             )
-            Spacer(modifier = Modifier.size(20.dp))
-            HorizontalDivider(thickness = 2.dp)
+            Text(
+                text = spot.room,
+                fontSize = 26.sp,
+                modifier = Modifier.align(Alignment.CenterHorizontally),
+                lineHeight = 30.sp
+            )
+            Spacer(modifier = Modifier.size(30.dp))
+            Card(
+                colors = CardDefaults.cardColors(
+                    containerColor = MaterialTheme.colorScheme.secondaryContainer
+                )
+            ) {
+                LazyRow(
+                    modifier = Modifier
+                        .height(280.dp)
+                ) {
+                    items(spot.images) { image ->
+                        AsyncImage(
+                            model = image,
+                            contentDescription = "Image of ${spot.building}",
+                            modifier = Modifier
+                                .padding(12.dp)
+                                .clip(RoundedCornerShape(12.dp))
+                        )
+                    }
+                }
+            }
             Spacer(modifier = Modifier.size(30.dp))
 
-            Text(" Faculty: ${spot.faculty}", fontSize = 28.sp)
+            Row(){
+                Text("Faculty: ", fontSize = 28.sp, fontWeight = FontWeight.SemiBold)
+                Text("${spot.faculty}", fontSize = 28.sp)
+            }
 
             Spacer(modifier = Modifier.size(20.dp))
+
+            Text("Amenities:", fontSize = 28.sp, fontWeight = FontWeight.SemiBold)
+            Spacer(modifier = Modifier.size(5.dp))
+            AmenityListItem("Chargers")
+            AmenityListItem("Washrooms")
+            AmenityListItem("Group Study")
+
             Card(
                 colors = CardDefaults.cardColors(
                     containerColor = Color.White
@@ -171,34 +215,36 @@ fun SpotDescription(spot: StudySpot, studySpotViewModel: StudySpotViewModel) {
                     .fillMaxWidth()
             ) {
 
-                Text(" Amenities:", fontSize = 28.sp)
-                Text(" -   Chargers", fontSize = 28.sp)
 
             }
             Spacer(modifier = Modifier.size(40.dp))
             Spacer(modifier = Modifier.weight(1f))
-            Card(
-                colors = CardDefaults.cardColors(
-                    containerColor = MaterialTheme.colorScheme.secondaryContainer
-                )
-            ) {
-                LazyRow(
-                    modifier = Modifier
-                        .height(350.dp)
-                ) {
-                    items(spot.images) { image ->
-                        AsyncImage(
-                            model = image,
-                            contentDescription = "Image of ${spot.building}",
-                            modifier = Modifier
-                                .padding(8.dp)
-                                .clip(RoundedCornerShape(12.dp))
-                        )
-                    }
-                }
-            }
+
             Spacer(modifier = Modifier.size(40.dp))
 
         }
     }
+}
+
+@Composable
+fun AmenityListItem(amenity: String) {
+    Row () {
+        Box(
+            modifier = Modifier
+                .size(32.dp)
+                .background(MaterialTheme.colorScheme.primary, shape = CircleShape)
+                .clip(CircleShape),
+            contentAlignment = Alignment.Center
+        ) {
+            Icon(
+                imageVector = Icons.Filled.Check,
+                tint = Color.White,
+                contentDescription = "Amenity Icon"
+            )
+        }
+        Spacer(modifier = Modifier.size(10.dp))
+        Text(text = amenity, fontSize = 28.sp)
+    }
+    Spacer(modifier = Modifier.size(10.dp))
+
 }
