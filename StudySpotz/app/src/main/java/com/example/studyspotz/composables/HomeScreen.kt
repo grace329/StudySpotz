@@ -122,7 +122,6 @@ fun HomeContent(modifier: Modifier, authViewModel: AuthViewModel, studySpotViewM
     var isListView by remember { mutableStateOf(true)}
     var profileClicked by remember { mutableStateOf(false)}
 
-
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -221,9 +220,10 @@ fun HomeContent(modifier: Modifier, authViewModel: AuthViewModel, studySpotViewM
                 .padding(8.dp)
         ) {
             if (isListView) {
-                ListContent(Modifier, authViewModel, studySpotViewModel) // Nested composable
+                ListContent(Modifier, authViewModel, studySpotViewModel, search) // Nested composable
+
             } else {
-                GalleryContent(Modifier, authViewModel, studySpotViewModel)
+                GalleryContent(Modifier, authViewModel, studySpotViewModel, search)
             }
             }
     }
