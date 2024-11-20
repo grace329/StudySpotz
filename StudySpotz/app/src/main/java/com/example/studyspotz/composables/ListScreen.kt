@@ -31,14 +31,19 @@ fun ListContent(modifier: Modifier, authViewModel: AuthViewModel, studySpotViewM
     val navigator = LocalNavigator.currentOrThrow
     val authState = authViewModel.authState.observeAsState()
     val studySpots by studySpotViewModel.studySpots.collectAsState() // Collect study spots from the ViewModel
+    val filteredStudySpots = if (search.isEmpty()) {
+        studySpots
+    } else {
+        studySpotViewModel.filterStudySpots(search)
+    }
 
     // Filtered list based on search query
-    val filteredStudySpots = studySpots.filter {
-        it.building.contains(search, ignoreCase = true) ||
-                it.room.contains(search, ignoreCase = true) ||
-                it.location.contains(search, ignoreCase = true) ||
-                (it.faculty?.contains(search, ignoreCase = true) == true)
-    }
+//    val filteredStudySpots = studySpots.filter {
+//        it.building.contains(search, ignoreCase = true) ||
+//                it.room.contains(search, ignoreCase = true) ||
+//                it.location.contains(search, ignoreCase = true) ||
+//                (it.faculty?.contains(search, ignoreCase = true) == true)
+//    }
     LaunchedEffect(authState.value) {
         when(authState.value) {
             is AuthState.Unauthenticated -> navigator.push(LoginScreen(Modifier, authViewModel,studySpotViewModel ))
