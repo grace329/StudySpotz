@@ -48,7 +48,9 @@ import android.util.Log
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Email
@@ -179,14 +181,16 @@ fun SpotDescription(spot: StudySpot, studySpotViewModel: StudySpotViewModel) {
             ) {
                 LazyRow(
                     modifier = Modifier
-                        .height(280.dp)
+                        .height(280.dp),
+                    horizontalArrangement = Arrangement.spacedBy(14.dp),
+                    contentPadding = PaddingValues(horizontal = 14.dp, vertical = 14.dp)
                 ) {
                     items(spot.images) { image ->
                         AsyncImage(
                             model = image,
                             contentDescription = "Image of ${spot.building}",
                             modifier = Modifier
-                                .padding(12.dp)
+                                //.padding(12.dp)
                                 .clip(RoundedCornerShape(12.dp))
                         )
                     }
