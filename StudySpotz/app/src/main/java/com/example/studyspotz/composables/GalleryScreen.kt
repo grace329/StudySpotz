@@ -36,18 +36,27 @@ import coil3.compose.AsyncImage
 class GalleryScreen(
     private val modifier: Modifier,
     private val authViewModel: AuthViewModel,
-    private val studySpotViewModel: StudySpotViewModel
+    private val studySpotViewModel: StudySpotViewModel,
+    private val search: String
 ) : Screen {
     @Composable
     override fun Content() {
-        GalleryContent(modifier, authViewModel, studySpotViewModel)
+        GalleryContent(modifier, authViewModel, studySpotViewModel, search)
     }
 }
 
 @Composable
-fun GalleryContent(modifier: Modifier, authViewModel: AuthViewModel, studySpotViewModel: StudySpotViewModel) {
+fun GalleryContent(modifier: Modifier, authViewModel: AuthViewModel, studySpotViewModel: StudySpotViewModel, search : String) {
     val navigator = LocalNavigator.currentOrThrow
     val studySpots by studySpotViewModel.studySpots.collectAsState()
+
+    // Filtered list based on search query
+    val filteredStudySpots = studySpots.filter {
+        it.building.contains(search, ignoreCase = true) ||
+                it.room.contains(search, ignoreCase = true) ||
+                it.location.contains(search, ignoreCase = true) ||
+                (it.faculty?.contains(search, ignoreCase = true) == true)
+    }
 
     Column(modifier = modifier.fillMaxSize().padding(16.dp)) {
 
@@ -57,7 +66,12 @@ fun GalleryContent(modifier: Modifier, authViewModel: AuthViewModel, studySpotVi
             columns = GridCells.Fixed(2), // Adjust columns?
             modifier = Modifier.fillMaxSize()
         ) {
-            items(studySpots) { spot ->
+//            items(studySpots) { spot ->
+//                StudySpotCard(spot) {
+//                    navigator.push(SpotDescriptionScreen(spot, studySpotViewModel))
+//                }
+//            }
+            items(filteredStudySpots) { spot ->
                 StudySpotCard(spot) {
                     navigator.push(SpotDescriptionScreen(spot, studySpotViewModel))
                 }
