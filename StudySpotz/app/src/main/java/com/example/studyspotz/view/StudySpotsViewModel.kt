@@ -25,6 +25,7 @@ class StudySpotViewModel(private val repository: StudySpotsModel) : ViewModel() 
     init {
         fetchAllStudySpots()
         fetchFavoriteSpots()
+        filterStudySpots("")
     }
 
     private fun fetchAllStudySpots() {
@@ -70,6 +71,19 @@ class StudySpotViewModel(private val repository: StudySpotsModel) : ViewModel() 
                 }
             } catch (e: Exception) {
                 _error.value = "Failed to update favorite spots"
+            }
+        }
+    }
+
+    fun filterStudySpots(search: String): List<StudySpot> {
+        if (search.isEmpty()) {
+           return _studySpots.value // Return all spots if the search query is empty
+        } else {
+            return _studySpots.value.filter {
+                it.building.contains(search, ignoreCase = true) ||
+                        it.room.contains(search, ignoreCase = true) ||
+                        it.location.contains(search, ignoreCase = true) ||
+                        (it.faculty?.contains(search, ignoreCase = true) == true)
             }
         }
     }
