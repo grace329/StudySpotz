@@ -25,7 +25,7 @@ class StudySpotViewModel(private val repository: StudySpotsModel) : ViewModel() 
     init {
         fetchAllStudySpots()
         fetchFavoriteSpots()
-        filterStudySpots("")
+        filterStudySpots("","All")
     }
 
     private fun fetchAllStudySpots() {
@@ -74,17 +74,14 @@ class StudySpotViewModel(private val repository: StudySpotsModel) : ViewModel() 
             }
         }
     }
-
-    fun filterStudySpots(search: String): List<StudySpot> {
-        if (search.isEmpty()) {
-           return _studySpots.value // Return all spots if the search query is empty
-        } else {
-            return _studySpots.value.filter {
-                it.building.contains(search, ignoreCase = true) ||
-                        it.room.contains(search, ignoreCase = true) ||
-                        it.location.contains(search, ignoreCase = true) ||
-                        (it.faculty?.contains(search, ignoreCase = true) == true)
-            }
+    fun filterStudySpots(search: String, filter: String): List<StudySpot> {
+        return _studySpots.value.filter { spot ->
+            val matchesSearch = search.isEmpty() || spot.building.contains(search, ignoreCase = true) ||
+                    spot.room.contains(search, ignoreCase = true) ||
+                    spot.location.contains(search, ignoreCase = true) ||
+                    (spot.faculty?.contains(search, ignoreCase = true) == true)
+            val matchesFilter = filter == "All" || (spot.faculty?.contains(filter, ignoreCase = true) == true)
+            matchesSearch && matchesFilter
         }
     }
 }

@@ -65,7 +65,7 @@ class HomeScreen(private val modifier: Modifier, private val authViewModel: Auth
 }
 
 @Composable
-fun FilterWithDropdown() {
+fun FilterWithDropdown(onFilterSelected: (String) -> Unit) {
     var menuOpen by remember { mutableStateOf(false) }
     var selectedItem by remember { mutableStateOf("All") }
 
@@ -88,27 +88,16 @@ fun FilterWithDropdown() {
             onDismissRequest = { menuOpen = false },
             offset = DpOffset(x = 0.dp, y = 10.dp)
         ) {
-            DropdownMenuItem(
-                onClick = {
-                    selectedItem = "All Faculties"
-                    menuOpen = false
-                },
-                text = { Text("All Faculties") }
-            )
-            DropdownMenuItem(
-                onClick = {
-                    selectedItem = "Math"
-                    menuOpen = false
-                },
-                text = { Text("Math") }
-            )
-            DropdownMenuItem(
-                onClick = {
-                    selectedItem = "Arts"
-                    menuOpen = false
-                },
-                text = { Text("Arts") }
-            )
+            listOf("All", "Math", "Arts", "Science", "Engineering", "Environment", "Health").forEach { faculty ->
+                DropdownMenuItem(
+                    onClick = {
+                        selectedItem = faculty
+                        menuOpen = false
+                        onFilterSelected(faculty)
+                    },
+                    text = { Text(faculty) }
+                )
+            }
         }
     }
 }
@@ -119,6 +108,7 @@ fun HomeContent(modifier: Modifier, authViewModel: AuthViewModel, studySpotViewM
     val authState = authViewModel.authState.observeAsState()
     val studySpots by studySpotViewModel.studySpots.collectAsState() // Collect study spots from the ViewModel
     var search by remember { mutableStateOf("") }
+    var filter by remember { mutableStateOf("All") }
     var isListView by remember { mutableStateOf(true)}
     var profileClicked by remember { mutableStateOf(false)}
 
@@ -174,8 +164,8 @@ fun HomeContent(modifier: Modifier, authViewModel: AuthViewModel, studySpotViewM
             }
         }
         Row (modifier = Modifier.fillMaxWidth()) {
-            Row ( ) {
-                FilterWithDropdown()
+            FilterWithDropdown { selectedFilter ->
+                filter = selectedFilter
             }
             Spacer(modifier = Modifier.weight(1f))
 
@@ -220,10 +210,10 @@ fun HomeContent(modifier: Modifier, authViewModel: AuthViewModel, studySpotViewM
                 .padding(8.dp)
         ) {
             if (isListView) {
-                ListContent(Modifier, authViewModel, studySpotViewModel, search) // Nested composable
+                ListContent(Modifier, authViewModel, studySpotViewModel, search, filter) // Nested composable
 
             } else {
-                GalleryContent(Modifier, authViewModel, studySpotViewModel, search)
+                GalleryContent(Modifier, authViewModel, studySpotViewModel, search, filter)
             }
             }
     }
