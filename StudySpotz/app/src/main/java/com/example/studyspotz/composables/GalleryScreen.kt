@@ -37,23 +37,24 @@ class GalleryScreen(
     private val modifier: Modifier,
     private val authViewModel: AuthViewModel,
     private val studySpotViewModel: StudySpotViewModel,
-    private val search: String
+    private val search: String,
+    private val filter: String
 ) : Screen {
     @Composable
     override fun Content() {
-        GalleryContent(modifier, authViewModel, studySpotViewModel, search)
+        GalleryContent(modifier, authViewModel, studySpotViewModel, search, filter)
     }
 }
 
 @Composable
-fun GalleryContent(modifier: Modifier, authViewModel: AuthViewModel, studySpotViewModel: StudySpotViewModel, search : String) {
+fun GalleryContent(modifier: Modifier, authViewModel: AuthViewModel, studySpotViewModel: StudySpotViewModel, search : String, filter: String) {
     val navigator = LocalNavigator.currentOrThrow
     val studySpots by studySpotViewModel.studySpots.collectAsState()
 
-    val filteredStudySpots = if (search.isEmpty()) {
+    val filteredStudySpots = if (search.isEmpty() && filter.equals("All")) {
         studySpots
     } else {
-        studySpotViewModel.filterStudySpots(search)
+        studySpotViewModel.filterStudySpots(search, filter)
     }
 
     Column(modifier = modifier.fillMaxSize().padding(16.dp)) {
