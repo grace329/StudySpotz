@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.ArrowDropDown
@@ -53,6 +54,7 @@ import cafe.adriel.voyager.navigator.currentOrThrow
 import com.example.studyspotz.AuthViewModel
 import com.example.studyspotz.R
 import com.example.studyspotz.view.StudySpotViewModel
+import androidx.compose.ui.unit.dp
 
 
 // Define the HomeScreen
@@ -70,7 +72,6 @@ fun FilterWithDropdown(onFilterSelected: (String) -> Unit) {
     var selectedItem by remember { mutableStateOf("All") }
 
     Box () {
-        // Filter button
         Button(onClick = { menuOpen = !menuOpen }) {
             Row {
                 Icon(
@@ -82,7 +83,7 @@ fun FilterWithDropdown(onFilterSelected: (String) -> Unit) {
             }
         }
 
-        // Filter menu
+        // Filter options
         DropdownMenu(
             expanded = menuOpen,
             onDismissRequest = { menuOpen = false },
@@ -111,6 +112,7 @@ fun HomeContent(modifier: Modifier, authViewModel: AuthViewModel, studySpotViewM
     var filter by remember { mutableStateOf("All") }
     var isListView by remember { mutableStateOf(true)}
     var profileClicked by remember { mutableStateOf(false)}
+    var showFavoritesOnly by remember { mutableStateOf(false) }
 
     Column(
         modifier = Modifier
@@ -167,6 +169,25 @@ fun HomeContent(modifier: Modifier, authViewModel: AuthViewModel, studySpotViewM
             FilterWithDropdown { selectedFilter ->
                 filter = selectedFilter
             }
+
+            Spacer(modifier = Modifier.width(10.dp))
+
+            IconToggleButton(
+                checked = showFavoritesOnly,
+                onCheckedChange = { showFavoritesOnly = !showFavoritesOnly },
+                modifier = Modifier
+                    .background(
+                        if (showFavoritesOnly) MaterialTheme.colorScheme.primary else Color.White
+                    )
+                    .size(48.dp)
+            ) {
+                Icon(
+                    imageVector = Icons.Filled.Favorite,
+                    contentDescription = if (showFavoritesOnly) "Show All Spots" else "Show Favorite Spots",
+                    tint = if (showFavoritesOnly) Color.White else MaterialTheme.colorScheme.primary
+                )
+            }
+
             Spacer(modifier = Modifier.weight(1f))
 
             IconToggleButton(
@@ -210,10 +231,10 @@ fun HomeContent(modifier: Modifier, authViewModel: AuthViewModel, studySpotViewM
                 .padding(8.dp)
         ) {
             if (isListView) {
-                ListContent(Modifier, authViewModel, studySpotViewModel, search, filter) // Nested composable
+                ListContent(Modifier, authViewModel, studySpotViewModel, search, filter, showFavoritesOnly)
 
             } else {
-                GalleryContent(Modifier, authViewModel, studySpotViewModel, search, filter)
+                GalleryContent(Modifier, authViewModel, studySpotViewModel, search, filter, showFavoritesOnly)
             }
             }
     }

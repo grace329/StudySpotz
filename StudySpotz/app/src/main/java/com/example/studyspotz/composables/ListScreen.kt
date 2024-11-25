@@ -20,15 +20,15 @@ import com.example.studyspotz.view.StudySpotViewModel
 
 //// Define the ListScreen
 @Composable
-fun ListContent(modifier: Modifier, authViewModel: AuthViewModel, studySpotViewModel: StudySpotViewModel, search : String, filter: String ) {
+fun ListContent(modifier: Modifier, authViewModel: AuthViewModel, studySpotViewModel: StudySpotViewModel, search : String, filter: String, showFavoritesOnly: Boolean ) {
     val navigator = LocalNavigator.currentOrThrow
     val authState = authViewModel.authState.observeAsState()
     val studySpots by studySpotViewModel.studySpots.collectAsState() // Collect study spots from the ViewModel
 
-    val filteredStudySpots = if (search.isEmpty() && filter.equals("All")) {
+    val filteredStudySpots = if (search.isEmpty() && filter.equals("All") && !showFavoritesOnly) {
         studySpots
     } else {
-        studySpotViewModel.filterStudySpots(search, filter)
+        studySpotViewModel.filterStudySpots(search, filter, showFavoritesOnly)
     }
 
     LaunchedEffect(authState.value) {

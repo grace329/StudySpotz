@@ -38,23 +38,24 @@ class GalleryScreen(
     private val authViewModel: AuthViewModel,
     private val studySpotViewModel: StudySpotViewModel,
     private val search: String,
-    private val filter: String
+    private val filter: String,
+    private val showFavoritesOnly: Boolean
 ) : Screen {
     @Composable
     override fun Content() {
-        GalleryContent(modifier, authViewModel, studySpotViewModel, search, filter)
+        GalleryContent(modifier, authViewModel, studySpotViewModel, search, filter, showFavoritesOnly)
     }
 }
 
 @Composable
-fun GalleryContent(modifier: Modifier, authViewModel: AuthViewModel, studySpotViewModel: StudySpotViewModel, search : String, filter: String) {
+fun GalleryContent(modifier: Modifier, authViewModel: AuthViewModel, studySpotViewModel: StudySpotViewModel, search : String, filter: String, showFavoritesOnly: Boolean) {
     val navigator = LocalNavigator.currentOrThrow
     val studySpots by studySpotViewModel.studySpots.collectAsState()
 
-    val filteredStudySpots = if (search.isEmpty() && filter.equals("All")) {
+    val filteredStudySpots = if (search.isEmpty() && filter.equals("All") && !showFavoritesOnly) {
         studySpots
     } else {
-        studySpotViewModel.filterStudySpots(search, filter)
+        studySpotViewModel.filterStudySpots(search, filter, showFavoritesOnly)
     }
 
     Column(modifier = modifier.fillMaxSize().padding(16.dp)) {
