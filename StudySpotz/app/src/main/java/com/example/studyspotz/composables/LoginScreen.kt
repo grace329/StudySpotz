@@ -43,8 +43,6 @@ import com.example.studyspotz.AuthState
 import com.example.studyspotz.AuthViewModel
 import com.example.studyspotz.R
 import com.example.studyspotz.view.StudySpotViewModel
-import androidx.compose.foundation.Image
-
 
 // Define LoginScreen
 class LoginScreen(private val modifier: Modifier, private val authViewModel: AuthViewModel, private val studySpotViewModel: StudySpotViewModel) : Screen {
