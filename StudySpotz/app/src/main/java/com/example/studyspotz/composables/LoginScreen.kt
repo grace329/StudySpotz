@@ -1,5 +1,6 @@
 package com.example.studyspotz.composables
 import android.widget.Toast
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.material3.Text
@@ -29,6 +30,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardType
@@ -41,6 +43,7 @@ import com.example.studyspotz.AuthState
 import com.example.studyspotz.AuthViewModel
 import com.example.studyspotz.R
 import com.example.studyspotz.view.StudySpotViewModel
+import androidx.compose.foundation.Image
 
 
 // Define LoginScreen
@@ -77,6 +80,16 @@ fun LoginContent(modifier: Modifier, authViewModel: AuthViewModel, studySpotView
         verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterVertically),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+
+        Image(
+            painter = painterResource(id = R.drawable.firstlogo),
+            contentDescription = "App Logo",
+            modifier = Modifier
+                .height(160.dp)
+                .fillMaxWidth(),
+            contentScale = ContentScale.Fit
+        )
+
         Text("Login to an Existing Account")
         TextField(
             value = email,

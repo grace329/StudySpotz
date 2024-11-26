@@ -37,6 +37,9 @@ import com.example.studyspotz.AuthState
 import com.example.studyspotz.AuthViewModel
 import com.example.studyspotz.R
 import com.example.studyspotz.view.StudySpotViewModel
+import androidx.compose.foundation.Image
+import androidx.compose.ui.layout.ContentScale
+
 
 // Define Signup
 class SignupScreen(private val modifier: Modifier, private val authViewModel: AuthViewModel, private val studySpotViewModel: StudySpotViewModel) : Screen {
@@ -71,6 +74,15 @@ fun SignupContent(modifier: Modifier, authViewModel: AuthViewModel, studySpotVie
         verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterVertically),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        Image(
+            painter = painterResource(id = R.drawable.firstlogo),
+            contentDescription = "App Logo",
+            modifier = Modifier
+                .height(160.dp)
+                .fillMaxWidth(),
+            contentScale = ContentScale.Fit
+        )
+
         Text("Create a New Account")
         TextField(
             value = email,
