@@ -55,3 +55,125 @@ directions to the spot.
     - Code in individual branches: #ISSUE-Feature-Description
     - Once ready to merge, get 2 approvals. 
     - Assign your PRs to yourself
+
+* **Dependencies**: flow from View (top) to Model (bottom).
+* **Data flow**: notifications flow bottom to top via interfaces.
+
+```mermaid
+classDiagram
+  LoginScreen "1" --> "1" AuthViewModel
+  LoginScreen "1" --> "1" HomeScreen : Navigates To
+  LoginScreen "1" --> "1" SignupScreen : Navigates To
+  LoginScreen "1" <-- "1" StudySpotViewModel
+  StudySpotViewModel "*" <|.. "*" StudySpotsModel
+  StudySpotsModel "1" --> "1" IPersistence
+  IPersistence "1" <|.. "1" FirebaseStorage
+  HomeScreen "1" --> "1" ListContent : Renders
+  HomeScreen "1" --> "1" GalleryContent : Renders
+  ListContent "1" --> "*" StudySpotListItem : Displays
+  StudySpotListItem "1" --> "1" SpotDescriptionScreen : Navigates To
+  StudySpotGalleryItem "1" --> "1" SpotDescriptionScreen : Navigates To
+  GalleryContent "1" --> "*" StudySpotGalleryItem : Displays
+
+  class LoginScreen {
+    <<View>>
+    -modifier : Modifier
+    -authViewModel : AuthViewModel
+    -studySpotViewModel : StudySpotViewModel
+
+  }
+
+  class AuthViewModel {
+    -auth : FirebaseAuth
+    -db : FirebaseFirestore
+    -_authState : MutableLiveData<AuthState>
+    +authState : LiveData<AuthState>
+    +checkAuthStatus()
+    +login(email: String, password: String)
+    +signup(email: String, password: String)
+    +signout()
+    +addUserToFirestore(uid: String, email: String)
+  }
+
+  class HomeScreen {
+    <<View>>
+    -authViewModel : AuthViewModel
+    -viewModel : StudySpotViewModel
+  }
+
+  class StudySpotViewModel {
+    -repository : StudySpotsModel
+    -_studySpots : MutableStateFlow<List<StudySpot>>
+    -_favoriteSpots : MutableStateFlow<List<String>>
+    +studySpots : StateFlow<List<StudySpot>>
+    +favoriteSpots : StateFlow<List<String>>
+    +toggleFavorite(spotId: String)
+    +filterStudySpots(search: String, filter: String, showFavoritesOnly: Boolean) : List<StudySpot>
+  }
+
+  class StudySpotsModel {
+    -storage : IPersistence
+    +getAllStudySpots() : List<StudySpot>
+    +getFavoriteStudySpots() : List<String>
+    +addFavorite(spotId: String)
+    +removeFavorite(spotId: String)
+  }
+
+  class IPersistence {
+    <<Interface>>
+    +getAllStudySpots() : List<StudySpot>
+    +getFavoriteStudySpots(userId: String) : List<String>
+    +addFavorite(userId: String, spotId: String)
+    +removeFavorite(userId: String, spotId: String)
+    +getCurrentUserId() : String
+  }
+
+  class FirebaseStorage {
+    +getAllStudySpots() : List<StudySpot>
+    +getFavoriteStudySpots(userId: String) : List<String>
+    +addFavorite(userId: String, spotId: String)
+    +removeFavorite(userId: String, spotId: String)
+    +getCurrentUserId() : String
+  }
+
+  class ListContent {
+    <<Composable>>
+    -authViewModel : AuthViewModel
+    -studySpotViewModel : StudySpotViewModel
+    +filterStudySpots(search: String, filter: String, showFavoritesOnly: Boolean) : List<StudySpot>
+  }
+
+  class GalleryContent {
+    <<Composable>>
+    -authViewModel : AuthViewModel
+    -studySpotViewModel : StudySpotViewModel
+    +filterStudySpots(search: String, filter: String, showFavoritesOnly: Boolean) : List<StudySpot>
+  }
+
+  class StudySpotListItem {
+    <<Composable>>
+    +spot : StudySpot
+    +onClick()
+  }
+
+  class SpotDescriptionScreen {
+    <<View>>
+    -spot : StudySpot
+    -viewModel : StudySpotViewModel
+
+  }
+
+  class StudySpotGalleryItem {
+    <<Composable>>
+    +spot : StudySpot
+    +onClick()
+  }
+
+  class SignupScreen {
+    <<View>>
+    -modifier : Modifier
+    -authViewModel : AuthViewModel
+    -studySpotViewModel : StudySpotViewModel
+  }
+
+```
