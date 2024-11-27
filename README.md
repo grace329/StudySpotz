@@ -56,8 +56,7 @@ directions to the spot.
     - Once ready to merge, get 2 approvals. 
     - Assign your PRs to yourself
 
-* **Dependencies**: flow from View (top) to Model (bottom).
-* **Data flow**: notifications flow bottom to top via interfaces.
+## Diagram
 
 ```mermaid
 classDiagram
