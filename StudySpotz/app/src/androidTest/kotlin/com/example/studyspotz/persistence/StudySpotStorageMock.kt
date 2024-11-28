@@ -6,7 +6,8 @@ class StudySpotStorageMock : IPersistence {
     private val studySpots = listOf(
         StudySpot(id = "1", building = "Building A", room = "101"),
         StudySpot(id = "2", building = "Building B", room = "202"),
-        StudySpot(id = "3", building = "Building C", room = "303")
+        StudySpot(id = "3", building = "Building C", room = "303"),
+        StudySpot(id = "4", building = "MC", room = "404")
     )
 
     private val userFavorites = mutableMapOf<String, MutableList<String>>()
