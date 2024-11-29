@@ -17,7 +17,7 @@ class StudySpotsModelTest {
         val studySpots = model.getAllStudySpots()
 
         // Assertions to check if the data returned is as expected
-        assertEquals(3, studySpots.size)
+        assertEquals(5, studySpots.size)
         assertEquals("Building A", studySpots[0].building)
         assertEquals("101", studySpots[0].room)
     }

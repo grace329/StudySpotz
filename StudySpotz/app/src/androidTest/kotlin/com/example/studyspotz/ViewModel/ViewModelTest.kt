@@ -22,6 +22,7 @@ class ViewModelTest {
         // Wait for all coroutines to complete
         advanceUntilIdle()
         val studySpots = viewModel.filterStudySpots("MC", "All", false)
+        advanceUntilIdle()
 
         // Assertions to check if the data returned is as expected
         assertEquals(1, studySpots.size) // Ensure only 1 spot matches "MC"
@@ -109,6 +110,23 @@ class ViewModelTest {
         advanceUntilIdle()
         // Assertions to check if the data returned is as expected
         assertEquals(0, studySpots.size) // Ensure only 1 spot matches "MC"
+    }
+
+    @Test
+    fun testFilterReturnAll() = runTest {
+        // Set up the mock data and model
+        val storageMock = StudySpotStorageMock()
+        val model = StudySpotsModel(storageMock)
+        val viewModel = StudySpotViewModel(model)
+
+        // Wait for all coroutines to complete
+        advanceUntilIdle()
+        val studySpots = viewModel.filterStudySpots("", "", false)
+        advanceUntilIdle()
+
+        // Assertions to check if the data returned is as expected
+        // two results for Search "10" (as tested above). But we apply "Math" filter so it should just be one.
+        assertEquals(5, studySpots.size)
     }
 
     @Test
