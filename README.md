@@ -21,7 +21,7 @@ directions to the spot.
 - [Meeting Minutes](https://git.uwaterloo.ca/k3khatri/team101-5/-/wikis/Meeting-Minutes) <br>
 - [Design Proposal](https://git.uwaterloo.ca/k3khatri/team101-5/-/wikis/Design-Proposal)<br>
 - [User Documentation](https://git.uwaterloo.ca/k3khatri/team101-5/-/wikis/User-Documentation)<br>
-- [Team Reflections](https://git.uwaterloo.ca/k3khatri/team101-5/-/wikis/Team-Reflection) <br>
+- [Project Reflections](https://git.uwaterloo.ca/k3khatri/team101-5/-/wikis/Project-Reflection) <br>
 - [Version 1.0.0 Release](https://git.uwaterloo.ca/k3khatri/team101-5/-/wikis/Version-1.0.0-Release-)<br />
 - [Version 1.2.0 Release](https://git.uwaterloo.ca/k3khatri/team101-5/-/wikis/Version-1.2.0-Release)<br />
 - [Version 1.3.0 Release](https://git.uwaterloo.ca/k3khatri/team101-5/-/wikis/Version-1.3.0-Release)
@@ -31,7 +31,7 @@ directions to the spot.
 [Project Proposal](Project_Proposal.pdf)
 
 ## Design Proposal
-[Initial Design Proposal](Design_Proposal.pdf)
+[Design Proposal](Design_Proposal.pdf)
 
 ## Release
 [Version 1.0.0 Release](https://git.uwaterloo.ca/k3khatri/team101-5/-/wikis/Version-1.0.0-Release-)<br />
