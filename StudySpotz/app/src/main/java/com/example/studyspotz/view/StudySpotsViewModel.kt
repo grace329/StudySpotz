@@ -79,7 +79,6 @@ class StudySpotViewModel(private val repository: StudySpotsModel) : ViewModel() 
         return _studySpots.value.filter { spot ->
             val matchesSearch = search.isEmpty() || spot.building.contains(search, ignoreCase = true) ||
                     spot.room.contains(search, ignoreCase = true) ||
-                    spot.location.contains(search, ignoreCase = true) ||
                     (spot.faculty?.contains(search, ignoreCase = true) == true)
             val matchesFilter = filter == "All" || (spot.faculty?.contains(filter, ignoreCase = true) == true)
             val matchesFavorites = !showFavoritesOnly || _favoriteSpots.value.contains(spot.id)

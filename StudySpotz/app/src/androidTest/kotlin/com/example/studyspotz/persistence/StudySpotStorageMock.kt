@@ -7,7 +7,8 @@ class StudySpotStorageMock : IPersistence {
         StudySpot(id = "1", building = "Building A", room = "101"),
         StudySpot(id = "2", building = "Building B", room = "202"),
         StudySpot(id = "3", building = "Building C", room = "303"),
-        StudySpot(id = "4", building = "MC", room = "404")
+        StudySpot(id = "4", building = "MC", room = "404"),
+        StudySpot(id = "5", building = "DC", room = "105", faculty = "Math")
     )
 
     private val userFavorites = mutableMapOf<String, MutableList<String>>()
