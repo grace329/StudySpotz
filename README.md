@@ -81,12 +81,61 @@ classDiagram
   StudySpotGalleryItem "1" --> "1" SpotDescriptionScreen : Navigates To
   GalleryContent "1" --> "*" StudySpotGalleryItem : Displays
 
-  class LoginScreen {
-    <<View>>
-    -modifier : Modifier
-    -authViewModel : AuthViewModel
-    -studySpotViewModel : StudySpotViewModel
+  namespace View {
+    class LoginScreen {
+      <<View>>
+      -modifier : Modifier
+      -authViewModel : AuthViewModel
+      -studySpotViewModel : StudySpotViewModel
+  
+    }
 
+    class HomeScreen {
+      <<View>>
+      -authViewModel : AuthViewModel
+      -viewModel : StudySpotViewModel
+    }
+
+    class ListContent {
+      <<Composable>>
+      -authViewModel : AuthViewModel
+      -studySpotViewModel : StudySpotViewModel
+      +filterStudySpots(search: String, filter: String, showFavoritesOnly: Boolean) : List<StudySpot>
+    }
+
+    class GalleryContent {
+      <<Composable>>
+      -authViewModel : AuthViewModel
+      -studySpotViewModel : StudySpotViewModel
+      +filterStudySpots(search: String, filter: String, showFavoritesOnly: Boolean) : List<StudySpot>
+    }
+
+    class StudySpotListItem {
+      <<Composable>>
+      +spot : StudySpot
+      +onClick()
+    }
+
+    class SpotDescriptionScreen {
+      <<View>>
+      -spot : StudySpot
+      -viewModel : StudySpotViewModel
+
+    }
+
+    class StudySpotGalleryItem {
+      <<Composable>>
+      +spot : StudySpot
+      +onClick()
+    }
+
+    class SignupScreen {
+      <<View>>
+      -modifier : Modifier
+      -authViewModel : AuthViewModel
+      -studySpotViewModel : StudySpotViewModel
+    }
+  
   }
 
   class AuthViewModel {
@@ -101,12 +150,6 @@ classDiagram
     +addUserToFirestore(uid: String, email: String)
   }
 
-  class HomeScreen {
-    <<View>>
-    -authViewModel : AuthViewModel
-    -viewModel : StudySpotViewModel
-  }
-
   class StudySpotViewModel {
     -repository : StudySpotsModel
     -_studySpots : MutableStateFlow<List<StudySpot>>
@@ -116,70 +159,33 @@ classDiagram
     +toggleFavorite(spotId: String)
     +filterStudySpots(search: String, filter: String, showFavoritesOnly: Boolean) : List<StudySpot>
   }
+  
+  namespace Model {
 
-  class StudySpotsModel {
-    -storage : IPersistence
-    +getAllStudySpots() : List<StudySpot>
-    +getFavoriteStudySpots() : List<String>
-    +addFavorite(spotId: String)
-    +removeFavorite(spotId: String)
-  }
+    class StudySpotsModel {
+      -storage : IPersistence
+      +getAllStudySpots() : List<StudySpot>
+      +getFavoriteStudySpots() : List<String>
+      +addFavorite(spotId: String)
+      +removeFavorite(spotId: String)
+    }
 
-  class IPersistence {
-    <<Interface>>
-    +getAllStudySpots() : List<StudySpot>
-    +getFavoriteStudySpots(userId: String) : List<String>
-    +addFavorite(userId: String, spotId: String)
-    +removeFavorite(userId: String, spotId: String)
-    +getCurrentUserId() : String
-  }
+    class IPersistence {
+      <<Interface>>
+      +getAllStudySpots() : List<StudySpot>
+      +getFavoriteStudySpots(userId: String) : List<String>
+      +addFavorite(userId: String, spotId: String)
+      +removeFavorite(userId: String, spotId: String)
+      +getCurrentUserId() : String
+    }
 
-  class FirebaseStorage {
-    +getAllStudySpots() : List<StudySpot>
-    +getFavoriteStudySpots(userId: String) : List<String>
-    +addFavorite(userId: String, spotId: String)
-    +removeFavorite(userId: String, spotId: String)
-    +getCurrentUserId() : String
-  }
-
-  class ListContent {
-    <<Composable>>
-    -authViewModel : AuthViewModel
-    -studySpotViewModel : StudySpotViewModel
-    +filterStudySpots(search: String, filter: String, showFavoritesOnly: Boolean) : List<StudySpot>
-  }
-
-  class GalleryContent {
-    <<Composable>>
-    -authViewModel : AuthViewModel
-    -studySpotViewModel : StudySpotViewModel
-    +filterStudySpots(search: String, filter: String, showFavoritesOnly: Boolean) : List<StudySpot>
-  }
-
-  class StudySpotListItem {
-    <<Composable>>
-    +spot : StudySpot
-    +onClick()
-  }
-
-  class SpotDescriptionScreen {
-    <<View>>
-    -spot : StudySpot
-    -viewModel : StudySpotViewModel
-
-  }
-
-  class StudySpotGalleryItem {
-    <<Composable>>
-    +spot : StudySpot
-    +onClick()
-  }
-
-  class SignupScreen {
-    <<View>>
-    -modifier : Modifier
-    -authViewModel : AuthViewModel
-    -studySpotViewModel : StudySpotViewModel
+    class FirebaseStorage {
+      +getAllStudySpots() : List<StudySpot>
+      +getFavoriteStudySpots(userId: String) : List<String>
+      +addFavorite(userId: String, spotId: String)
+      +removeFavorite(userId: String, spotId: String)
+      +getCurrentUserId() : String
+    }
   }
 
 ```
