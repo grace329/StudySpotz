@@ -9,6 +9,13 @@ visualize and locate what the spot looks like, so the description will contain p
 directions to the spot.
 
 ## Add Screenshots here
+<img src="screenshots/s0.png" alt="Screenshot 0" width="150">
+<img src="screenshots/s01.png" alt="Screenshot 01" width="150">
+<img src="screenshots/s1.png" alt="Screenshot 1" width="150">
+<img src="screenshots/s5.png" alt="Screenshot 5" width="150">
+<img src="screenshots/s6.png" alt="Screenshot 6" width="150">
+<img src="screenshots/s7.png" alt="Screenshot 7" width="150">
+<img src="screenshots/s8.png" alt="Screenshot 8" width="150">
 
 ## Members
 - Keta Khatri (k3khatri@uwaterloo.ca)
@@ -19,7 +26,7 @@ directions to the spot.
 
 ## Documents
 - [Meeting Minutes](https://git.uwaterloo.ca/k3khatri/team101-5/-/wikis/Meeting-Minutes) <br>
-- [Design Proposal](https://git.uwaterloo.ca/k3khatri/team101-5/-/wikis/Design-Proposal)<br>
+- [Design Diagrams](https://git.uwaterloo.ca/k3khatri/team101-5/-/wikis/Design-Diagrams)<br>
 - [User Documentation](https://git.uwaterloo.ca/k3khatri/team101-5/-/wikis/User-Documentation)<br>
 - [Project Reflections](https://git.uwaterloo.ca/k3khatri/team101-5/-/wikis/Project-Reflection) <br>
 - [Version 1.0.0 Release](https://git.uwaterloo.ca/k3khatri/team101-5/-/wikis/Version-1.0.0-Release-)<br />
