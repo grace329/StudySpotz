@@ -29,9 +29,10 @@ directions to the spot.
 - [Design Diagrams](https://git.uwaterloo.ca/k3khatri/team101-5/-/wikis/Design-Proposal)<br>
 - [User Documentation](https://git.uwaterloo.ca/k3khatri/team101-5/-/wikis/User-Documentation)<br>
 - [Project Reflections](https://git.uwaterloo.ca/k3khatri/team101-5/-/wikis/Project-Reflection) <br>
-- [Version 1.0.0 Release](https://git.uwaterloo.ca/k3khatri/team101-5/-/wikis/Version-1.0.0-Release-)<br />
-- [Version 1.2.0 Release](https://git.uwaterloo.ca/k3khatri/team101-5/-/wikis/Version-1.2.0-Release)<br />
+- [Version 1.0.0 Release](https://git.uwaterloo.ca/k3khatri/team101-5/-/wikis/Version-1.0.0-Release-)
+- [Version 1.2.0 Release](https://git.uwaterloo.ca/k3khatri/team101-5/-/wikis/Version-1.2.0-Release)
 - [Version 1.3.0 Release](https://git.uwaterloo.ca/k3khatri/team101-5/-/wikis/Version-1.3.0-Release)
+- [Version 2.0.0 Release](https://git.uwaterloo.ca/k3khatri/team101-5/-/wikis/Version-2.0.0-Release)
 
 
 ## Project Proposal
@@ -45,7 +46,8 @@ directions to the spot.
 [Version 1.2.0 Release](https://git.uwaterloo.ca/k3khatri/team101-5/-/wikis/Version-1.2.0-Release)
 <br />
 [Version 1.3.0 Release](https://git.uwaterloo.ca/k3khatri/team101-5/-/wikis/Version-1.3.0-Release)
-
+<br>
+[Version 2.0.0 Release](https://git.uwaterloo.ca/k3khatri/team101-5/-/wikis/Version-2.0.0-Release)
 
 ## Team Contract
 - Wednesday and Friday during class times are mandatory. Meet Mondays after 4:00 PM EST as needed.
