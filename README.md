@@ -9,8 +9,7 @@ visualize and locate what the spot looks like, so the description will contain p
 directions to the spot.
 
 ## Add Screenshots here
-![alt text](s0.png)
-![alt text](s01.png) ![alt text](s1.png) ![alt text](s5.png) ![alt text](s6.png) ![alt text](s7.png) ![alt text](s8.png)
+![alt text](screenshots/s0.png) ![alt text](screenshots/s01.png) ![alt text](screenshots/s1.png) ![alt text](screenshots/s5.png) ![alt text](screenshots/s6.png) ![alt text](screenshots/s7.png) ![alt text](screenshots/s8.png)
 
 ## Members
 - Keta Khatri (k3khatri@uwaterloo.ca)
