@@ -4,7 +4,7 @@
 ## Description
 The app is aimed towards all University of Waterloo students looking for study spots on campus.
 It will be a great resource for students looking to explore new study spots whether it's for individual or group study. It is often difficult to know details about the spot without being there, so this app will provide the necessary
-information to the students. It will contain details about the location such as charging stations, projectors, and whiteboards. It is also difficult to
+information to the students. It is also difficult to
 visualize and locate what the spot looks like, so the description will contain photos as well as
 directions to the spot.
 
@@ -26,7 +26,7 @@ directions to the spot.
 
 ## Documents
 - [Meeting Minutes](https://git.uwaterloo.ca/k3khatri/team101-5/-/wikis/Meeting-Minutes) <br>
-- [Design Diagrams](https://git.uwaterloo.ca/k3khatri/team101-5/-/wikis/Design-Diagrams)<br>
+- [Design Diagrams](https://git.uwaterloo.ca/k3khatri/team101-5/-/wikis/Design-Proposal)<br>
 - [User Documentation](https://git.uwaterloo.ca/k3khatri/team101-5/-/wikis/User-Documentation)<br>
 - [Project Reflections](https://git.uwaterloo.ca/k3khatri/team101-5/-/wikis/Project-Reflection) <br>
 - [Version 1.0.0 Release](https://git.uwaterloo.ca/k3khatri/team101-5/-/wikis/Version-1.0.0-Release-)<br />
