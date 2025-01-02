@@ -8,7 +8,7 @@ information to the students. It is also difficult to
 visualize and locate what the spot looks like, so the description will contain photos as well as
 directions to the spot.
 
-## Add Screenshots here
+## Screenshots
 <img src="screenshots/s0.png" alt="Screenshot 0" width="150">
 <img src="screenshots/s01.png" alt="Screenshot 01" width="150">
 <img src="screenshots/s1.png" alt="Screenshot 1" width="150">
