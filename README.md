@@ -5,13 +5,16 @@
 StudySpotz is an app for all University of Waterloo students looking for study spots on campus, allowing students to find new study spots based on personal preferences. It's often difficult to know the details of a study spot, visualize it, or locate it without having gone there first, so our app provides all of that information in one place. 
 
 ## Screenshots
-<img src="screenshots/s0.png" alt="Screenshot 0" width="150">
-<img src="screenshots/s01.png" alt="Screenshot 01" width="150">
-<img src="screenshots/s1.png" alt="Screenshot 1" width="150">
-<img src="screenshots/s5.png" alt="Screenshot 5" width="150">
-<img src="screenshots/s6.png" alt="Screenshot 6" width="150">
-<img src="screenshots/s7.png" alt="Screenshot 7" width="150">
-<img src="screenshots/s8.png" alt="Screenshot 8" width="150">
+<p>
+  <img src="screenshots/s0.png" alt="Screenshot 0" width="10%">
+  <img src="screenshots/s01.png" alt="Screenshot 01" width="10%">
+  <img src="screenshots/s1.png" alt="Screenshot 1" width="10%">
+  <img src="screenshots/s5.png" alt="Screenshot 5" width="10%">
+  <img src="screenshots/s6.png" alt="Screenshot 6" width="10%">
+  <img src="screenshots/s7.png" alt="Screenshot 7" width="10%">
+  <img src="screenshots/s8.png" alt="Screenshot 8" width="10%">
+</p>
+
 
 ## Members
 - Keta Khatri (k3khatri@uwaterloo.ca)
