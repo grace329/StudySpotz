@@ -2,11 +2,7 @@
 
 
 ## Description
-The app is aimed towards all University of Waterloo students looking for study spots on campus.
-It will be a great resource for students looking to explore new study spots whether it's for individual or group study. It is often difficult to know details about the spot without being there, so this app will provide the necessary
-information to the students. It is also difficult to
-visualize and locate what the spot looks like, so the description will contain photos as well as
-directions to the spot.
+StudySpotz is an app for all University of Waterloo students looking for study spots on campus, allowing students to find new study spots based on personal preferences. It's often difficult to know the details of a study spot, visualize it, or locate it without having gone there first, so our app provides all of that information in one place. 
 
 ## Screenshots
 <img src="screenshots/s0.png" alt="Screenshot 0" width="150">
@@ -25,10 +21,8 @@ directions to the spot.
 - Julianne Jorda (rjjorda@uwaterloo.ca)
 
 ## Documents
-- [Meeting Minutes](https://git.uwaterloo.ca/k3khatri/team101-5/-/wikis/Meeting-Minutes) <br>
 - [Design Diagrams](https://git.uwaterloo.ca/k3khatri/team101-5/-/wikis/Design-Proposal)<br>
 - [User Documentation](https://git.uwaterloo.ca/k3khatri/team101-5/-/wikis/User-Documentation)<br>
-- [Project Reflections](https://git.uwaterloo.ca/k3khatri/team101-5/-/wikis/Project-Reflection) <br>
 - [Version 1.0.0 Release](https://git.uwaterloo.ca/k3khatri/team101-5/-/wikis/Version-1.0.0-Release-)
 - [Version 1.2.0 Release](https://git.uwaterloo.ca/k3khatri/team101-5/-/wikis/Version-1.2.0-Release)
 - [Version 1.3.0 Release](https://git.uwaterloo.ca/k3khatri/team101-5/-/wikis/Version-1.3.0-Release)
@@ -50,7 +44,6 @@ directions to the spot.
 [Version 2.0.0 Release](https://git.uwaterloo.ca/k3khatri/team101-5/-/wikis/Version-2.0.0-Release)
 
 ## Team Contract
-- Wednesday and Friday during class times are mandatory. Meet Mondays after 4:00 PM EST as needed.
 - Location: MC 3008 or MC 3005. First person to arrive can decide and let the team know. 
 - Any absences or lates should be communicated by emails.
 - General communication will be done through Discord.
