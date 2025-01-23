@@ -6,13 +6,13 @@ StudySpotz is an app for all University of Waterloo students looking for study s
 
 ## Screenshots
 <p>
-  <img src="screenshots/s0.png" alt="Screenshot 0" width="10%">
-  <img src="screenshots/s01.png" alt="Screenshot 01" width="10%">
-  <img src="screenshots/s1.png" alt="Screenshot 1" width="10%">
-  <img src="screenshots/s5.png" alt="Screenshot 5" width="10%">
-  <img src="screenshots/s6.png" alt="Screenshot 6" width="10%">
-  <img src="screenshots/s7.png" alt="Screenshot 7" width="10%">
-  <img src="screenshots/s8.png" alt="Screenshot 8" width="10%">
+  <img src="screenshots/s0.png" alt="Screenshot 0" width="25%">
+  <img src="screenshots/s01.png" alt="Screenshot 01" width="25%">
+  <img src="screenshots/s1.png" alt="Screenshot 1" width="25%">
+  <img src="screenshots/s5.png" alt="Screenshot 5" width="25%">
+  <img src="screenshots/s6.png" alt="Screenshot 6" width="25%">
+  <img src="screenshots/s7.png" alt="Screenshot 7" width="25%">
+  <img src="screenshots/s8.png" alt="Screenshot 8" width="25%">
 </p>
 
 
